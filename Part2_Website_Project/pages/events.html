@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse upcoming events on EventsX. Filter by category, date, location, and more. - EventsX">
+    <meta name="keywords" content="events catalog, upcoming events, event registration, conferences, workshops, EventsX">
+    <meta name="author" content="Group05_223101629_223101614_223101XXX_223101YYY">
+    <title>Events Catalog - EduConnect</title>
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- AI Usage: Used for structure guidance and semantic element explanations -->
+    
+    <!-- ========== HEADER SECTION ========== -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo-area">
+                    <img src="../images/logo.png" alt="EventsX Logo" class="site-logo" width="90" height="90">
+                    <div class="site-branding">
+                        <h1>EventsX</h1>
+                        <p class="tagline">Dynamic Responsive Event Planner</p>
+                    </div>
+                </div>
+                
+                <nav class="primary-nav" id="main-navigation" aria-label="Primary Navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item"><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li class="nav-item"><a href="events.html" class="nav-link active" aria-current="page"><i class="fas fa-calendar-alt"></i> Events Catalog</a></li>
+                        <li class="nav-item"><a href="registration.html" class="nav-link"><i class="fas fa-user-plus"></i> Registration</a></li>
+                        <li class="nav-item"><a href="budget-calculator.html" class="nav-link"><i class="fas fa-calculator"></i> Budget Calculator</a></li>
+                        <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li class="nav-item"><a href="student-dashboard.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li class="nav-item"><a href="https://www.gu.edu.eg" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="fas fa-external-link-alt"></i> Galala University</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- ========== END HEADER SECTION ========== -->
+
+    <!-- ========== BREADCRUMB NAVIGATION ========== -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                    <a href="../index.html" class="breadcrumb-link">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <span class="breadcrumb-current">Events Catalog</span>
+                </li>
+            </ol>
+        </div>
+    </nav>
+    <!-- ========== END BREADCRUMB NAVIGATION ========== -->
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="main-content" class="main-container">
+        <div class="container">
+            <div class="page-header">
+                <h1>Events Catalog</h1>
+                <p class="lead">Discover and register for upcoming events</p>
+            </div>
+
+            <div class="two-column-layout">
+                <!-- Left Column (70%) -->
+                <div class="content-primary">
+                    <!-- Search and Sort -->
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="grid grid-2" style="gap: 1rem;">
+                                <div>
+                                    <form class="search-box">
+                                        <div class="form-group">
+                                            <label for="event-search" class="sr-only">Search Events</label>
+                                            <input type="search" id="event-search" placeholder="Search events..." class="search-input">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div>
+                                    <div class="form-group">
+                                        <label for="sort-events">Sort By:</label>
+                                        <select id="sort-events" class="form-control">
+                                            <option value="date">Date (Newest First)</option>
+                                            <option value="popularity">Popularity</option>
+                                            <option value="price-low">Price (Low to High)</option>
+                                            <option value="price-high">Price (High to Low)</option>
+                                            <option value="name">Name (A-Z)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Events Grid -->
+                    <section>
+                        <h2>Upcoming Events <span class="badge">12 events found</span></h2>
+                        
+                        <div class="article-grid">
+                            <!-- Event 1 -->
+                            <article class="card event-card" id="tech-conference">
+                                <figure>
+                                    <img src="../images/events/tech-conference.jpg" alt="Tech Conference stage with speakers" class="card-image" width="400" height="250" loading="lazy">
+                                    <figcaption>Technology Conference</figcaption>
+                                </figure>
+                                <div class="card-body">
+                                    <div class="flex justify-between align-center mb-2">
+                                        <span class="badge primary">Featured</span>
+                                        <span class="text-muted"><i class="fas fa-eye"></i> 1.2k views</span>
+                                    </div>
+                                    <h3 class="card-title">Annual Tech Conference 2025</h3>
+                                    <p class="card-text">Join industry leaders and innovators for two days of cutting-edge technology insights, networking, and workshops.</p>
+                                    
+                                    <dl class="definition-list">
+                                        <dt class="definition-term"><i class="fas fa-calendar"></i> Date:</dt>
+                                        <dd class="definition-data">Jan 15-16, 2026</dd>
+                                        <dt class="definition-term"><i class="fas fa-map-marker-alt"></i> Location:</dt>
+                                        <dd class="definition-data">Main Hall</dd>
+                                        <dt class="definition-term"><i class="fas fa-tag"></i> Price:</dt>
+                                        <dd class="definition-data">$199</dd>
+                                        <dt class="definition-term"><i class="fas fa-clock"></i> Duration:</dt>
+                                        <dd class="definition-data">2 days</dd>
+                                    </dl>
+                                    
+                                    <div class="progress-container">
+                                        <div class="progress-label">
+                                            <span>Seats Available:</span>
+                                            <span>45/500</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" data-width="91%" style="width: 0%;"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-footer">
+                                        <button onclick="registerEvent('tech-conf-2025')" class="btn btn-success register-btn">
+                                            <i class="fas fa-ticket-alt"></i> Register Now
+                                        </button>
+                                        <button onclick="saveToCalendar('tech-conf-2025')" class="btn btn-outline">
+                                            <i class="fas fa-calendar-plus"></i> Save
+                                        </button>
+                                        <div class="mt-2">
+                                            <small class="text-muted">Share:</small>
+                                            <button onclick="shareEvent('tech-conf-2025', 'facebook')" class="btn btn-sm" style="padding: 0.25rem 0.5rem;">
+                                                <i class="fab fa-facebook"></i>
+                                            </button>
+                                            <button onclick="shareEvent('tech-conf-2025', 'twitter')" class="btn btn-sm" style="padding: 0.25rem 0.5rem;">
+                                                <i class="fab fa-twitter"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Event 2 -->
+                            <article class="card event-card" id="cultural-festival">
+                                <figure>
+                                    <img src="../images/events/cultural-festival.jpg" alt="Cultural festival with colorful decorations" class="card-image" width="400" height="250" loading="lazy">
+                                    <figcaption>Cultural Event</figcaption>
+                                </figure>
+                                <div class="card-body">
+                                    <div class="flex justify-between align-center mb-2">
+                                        <span class="badge success">Free</span>
+                                        <span class="text-muted"><i class="fas fa-eye"></i> 850 views</span>
+                                    </div>
+                                    <h3 class="card-title">Cultural Diversity Festival</h3>
+                                    <p class="card-text">Experience global cultures through food, music, dance, and traditional arts in this vibrant celebration of diversity.</p>
+                                    
+                                    <dl class="definition-list">
+                                        <dt class="definition-term"><i class="fas fa-calendar"></i> Date:</dt>
+                                        <dd class="definition-data">Feb 20, 2026</dd>
+                                        <dt class="definition-term"><i class="fas fa-map-marker-alt"></i> Location:</dt>
+                                        <dd class="definition-data">Campus Grounds</dd>
+                                        <dt class="definition-term"><i class="fas fa-tag"></i> Price:</dt>
+                                        <dd class="definition-data">Free</dd>
+                                        <dt class="definition-term"><i class="fas fa-clock"></i> Time:</dt>
+                                        <dd class="definition-data">10AM-8PM</dd>
+                                    </dl>
+                                    
+                                    <div class="mt-3">
+                                        <h4>Activities:</h4>
+                                        <ul>
+                                            <li>Traditional Food Tasting</li>
+                                            <li>Cultural Performances</li>
+                                            <li>Art Exhibitions</li>
+                                            <li>Workshops</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="card-footer">
+                                        <button onclick="registerEvent('cultural-fest')" class="btn btn-success register-btn">
+                                            <i class="fas fa-ticket-alt"></i> Register (Free)
+                                        </button>
+                                        <a href="#cultural-festival-details" class="btn btn-primary">
+                                            <i class="fas fa-info-circle"></i> Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Event 3 -->
+                            <article class="card event-card" id="career-fair">
+                                <figure>
+                                    <img src="../images/events/career-fair.jpg" alt="Career fair with recruiters and students" class="card-image" width="400" height="250" loading="lazy">
+                                    <figcaption>Career Development</figcaption>
+                                </figure>
+                                <div class="card-body">
+                                    <div class="flex justify-between align-center mb-2">
+                                        <span class="badge warning">Early Bird</span>
+                                        <span class="text-muted"><i class="fas fa-eye"></i> 2.1k views</span>
+                                    </div>
+                                    <h3 class="card-title">Spring Career Fair 2026</h3>
+                                    <p class="card-text">Connect with top employers, explore career opportunities, and attend resume workshops and mock interviews.</p>
+                                    
+                                    <dl class="definition-list">
+                                        <dt class="definition-term"><i class="fas fa-calendar"></i> Date:</dt>
+                                        <dd class="definition-data">Mar 10, 2026</dd>
+                                        <dt class="definition-term"><i class="fas fa-map-marker-alt"></i> Location:</dt>
+                                        <dd class="definition-data">Convention Center</dd>
+                                        <dt class="definition-term"><i class="fas fa-tag"></i> Price:</dt>
+                                        <dd class="definition-data">$25 (Students Free)</dd>
+                                        <dt class="definition-term"><i class="fas fa-building"></i> Companies:</dt>
+                                        <dd class="definition-data">50+</dd>
+                                    </dl>
+                                    
+                                    <div class="progress-container">
+                                        <div class="progress-label">
+                                            <span>Early Bird Discount:</span>
+                                            <span>Ends Dec 31</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" data-width="65%" style="width: 0%; background: #f39c12;"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-footer">
+                                        <button onclick="registerEvent('career-fair-2026')" class="btn btn-success register-btn">
+                                            <i class="fas fa-ticket-alt"></i> Register Now
+                                        </button>
+                                        <a href="#career-fair-companies" class="btn btn-outline">
+                                            <i class="fas fa-list"></i> Company List
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- More events would continue here... -->
+                        </div>
+
+                        <!-- Pagination -->
+                        <nav aria-label="Events pagination" class="mt-4">
+                            <ul class="list-inline text-center">
+                                <li><a href="#" aria-label="Previous page">&laquo;</a></li>
+                                <li><a href="#" aria-current="page">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#" aria-label="Next page">&raquo;</a></li>
+                            </ul>
+                        </nav>
+                    </section>
+
+                    <!-- Events Table -->
+                    <section class="mt-4">
+                        <h2>Events Comparison</h2>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <caption>Upcoming Events Overview</caption>
+                                <thead>
+                                    <tr>
+                                        <th>Event Name</th>
+                                        <th>Date</th>
+                                        <th>Location</th>
+                                        <th>Price</th>
+                                        <th>Duration</th>
+                                        <th>Seats Available</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Tech Conference 2025</td>
+                                        <td>Jan 15-16, 2026</td>
+                                        <td>Main Hall</td>
+                                        <td>$199</td>
+                                        <td>2 days</td>
+                                        <td>45/500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cultural Diversity Festival</td>
+                                        <td>Feb 20, 2026</td>
+                                        <td>Campus Grounds</td>
+                                        <td>Free</td>
+                                        <td>1 day</td>
+                                        <td>Unlimited</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Spring Career Fair 2026</td>
+                                        <td>Mar 10, 2026</td>
+                                        <td>Convention Center</td>
+                                        <td>$25</td>
+                                        <td>1 day</td>
+                                        <td>300/500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AI Workshop Series</td>
+                                        <td>Jan 5-26, 2026</td>
+                                        <td>Tech Building</td>
+                                        <td>$149</td>
+                                        <td>4 sessions</td>
+                                        <td>30/100</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Right Column (30%) - Filters -->
+                <aside class="content-secondary">
+                    <section class="sidebar-section">
+                        <h3 class="sidebar-title">Filter Events</h3>
+                        
+                        <form aria-label="Event filters" class="filter-form">
+                            <!-- Category Filter -->
+                            <div class="filter-group">
+                                <h4 class="filter-title">Category</h4>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="category" value="technology" checked>
+                                        Technology
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="category" value="cultural">
+                                        Cultural
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="category" value="career">
+                                        Career
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="category" value="workshop">
+                                        Workshop
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="checkbox" name="category" value="networking">
+                                        Networking
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Date Filter -->
+                            <div class="filter-group">
+                                <h4 class="filter-title">Date Range</h4>
+                                <div class="form-group">
+                                    <label for="start-date">From:</label>
+                                    <input type="date" id="start-date" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="end-date">To:</label>
+                                    <input type="date" id="end-date" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Price Filter -->
+                            <div class="filter-group">
+                                <h4 class="filter-title">Price Range</h4>
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="price" value="all" checked>
+                                        All Prices
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="price" value="free">
+                                        Free Only
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="price" value="paid">
+                                        Paid Only
+                                    </label>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label for="max-price">Max Price: $<span id="price-value">100</span></label>
+                                    <input type="range" id="max-price" min="0" max="500" value="100" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Location Filter -->
+                            <div class="filter-group">
+                                <h4 class="filter-title">Location</h4>
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option value="">All Locations</option>
+                                        <option value="main-hall">Main Hall</option>
+                                        <option value="convention-center">Convention Center</option>
+                                        <option value="campus-grounds">Campus Grounds</option>
+                                        <option value="tech-building">Tech Building</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="fas fa-filter"></i> Apply Filters
+                            </button>
+                            <button type="reset" class="btn btn-secondary btn-block mt-2">
+                                <i class="fas fa-redo"></i> Reset Filters
+                            </button>
+                        </form>
+                    </section>
+
+                    <!-- Popular Tags -->
+                    <section class="sidebar-section">
+                        <h3 class="sidebar-title">Popular Tags</h3>
+                        <div class="badge-container">
+                            <span class="badge">Technology</span>
+                            <span class="badge">Networking</span>
+                            <span class="badge">Workshop</span>
+                            <span class="badge">Free</span>
+                            <span class="badge">Career</span>
+                            <span class="badge">Cultural</span>
+                            <span class="badge">Conference</span>
+                        </div>
+                    </section>
+
+                    <!-- Upcoming Deadlines -->
+                    <section class="sidebar-section">
+                        <h3 class="sidebar-title">Registration Deadlines</h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-1">
+                                <strong>Tech Conference:</strong><br>
+                                <span class="countdown" data-date="2026-01-10"></span>
+                            </li>
+                            <li class="mb-1">
+                                <strong>Early Bird Discount:</strong><br>
+                                <span class="countdown" data-date="2025-12-31"></span>
+                            </li>
+                            <li>
+                                <strong>AI Workshop:</strong><br>
+                                <span class="countdown" data-date="2025-12-20"></span>
+                            </li>
+                        </ul>
+                    </section>
+                </aside>
+            </div>
+        </div>
+    </main>
+    <!-- ========== END MAIN CONTENT ========== -->
+
+    <!-- ========== FOOTER SECTION ========== -->
+    <!-- Same footer as index.html -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EventsX</h3>
+                    <p>Your ultimate event planning platform. Discover, register, and manage events with ease.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/EventsXOfficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/eventsx" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/eventsxofficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events Catalog</a></li>
+                        <li><a href="registration.html"><i class="fas fa-chevron-right"></i> Registration</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <address class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:info@eventsx-gu.edu">info@eventsx-gu.edu</a></p>
+                        <p><i class="fas fa-phone"></i> Phone: +20 15888</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Address: Galala University, Suez, Egypt</p>
+                        <p><i class="fas fa-clock"></i> Office Hours: Sun-Wed, 9AM-4PM</p>
+                    </address>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Help Center</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQs</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span class="current-year">2025</span> EventsX. All rights reserved.</p>
+                <p>Last updated: <time datetime="2025-12-05">December 5, 2025</time></p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a> | 
+                    <a href="#">Terms of Service</a> | 
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
