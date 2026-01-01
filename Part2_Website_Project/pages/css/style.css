@@ -28,8 +28,6 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 /* ========== TYPOGRAPHY ========== */
@@ -45,9 +43,6 @@ h1 {
     font-size: 2.8rem;
     font-weight: 700;
     background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 h2 {
@@ -171,9 +166,6 @@ em {
     margin: 0;
     font-size: 2.5rem;
     background: linear-gradient(to right, #ecf0f1, #bdc3c7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .site-branding .tagline {
@@ -292,6 +284,14 @@ em {
 
 .page-header h1 {
     margin-bottom: 1rem;
+}
+
+
+.lead{
+    font-size: 1.25rem;
+    color: #0091f2;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .page-header .lead {
@@ -885,9 +885,6 @@ em {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     background: linear-gradient(to right, #ecf0f1, #bdc3c7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .footer-brand p {
