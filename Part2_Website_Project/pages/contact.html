@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Calculate your event budget effortlessly with EventsX Budget Calculator.">
-    <meta name="author" content="Samaa Mohamed 223101629">
-    <title>Budget Calculator - EventsX</title>
+    <meta name="description" content="Get in touch with the EventsX team for support, inquiries, or feedback.">
+    <meta name="author" content="Omar Khalifa 223101614">
+    <title>Contact Us - EventsX</title>
     <link rel="icon" href="../images/logo.png" type="image/png">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,13 +27,13 @@
                 
                 <nav class="primary-nav" id="main-navigation" role="navigation" aria-label="Primary Navigation">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="index.html" class="nav-link active" aria-current="page"><i class="fas fa-home"></i> Home</a></li>
-                        <li class="nav-item"><a href="pages/dashboard.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                        <li class="nav-item"><a href="pages/events.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Events Catalog</a></li>
-                        <li class="nav-item"><a href="pages/registration.html" class="nav-link"><i class="fas fa-user-plus"></i> Registration</a></li>
-                        <li class="nav-item"><a href="pages/budget-calculator.html" class="nav-link"><i class="fas fa-calculator"></i> Budget Calculator</a></li>
-                        <li class="nav-item"><a href="pages/contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact Us</a></li>
-                        <li class="nav-item"><a href="pages/about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li class="nav-item"><a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li class="nav-item"><a href="events.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Events Catalog</a></li>
+                        <li class="nav-item"><a href="registration.html" class="nav-link"><i class="fas fa-user-plus"></i> Registration</a></li>
+                        <li class="nav-item"><a href="budget-calculator.html" class="nav-link"><i class="fas fa-calculator"></i> Budget Calculator</a></li>
+                        <li class="nav-item"><a href="contact.html" class="nav-link active" aria-current="page"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                        <li class="nav-item"><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
                         <li class="nav-item"><a href="https://www.gu.edu.eg" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="fas fa-external-link-alt"></i> Galala University</a></li>
                     </ul>
                 </nav>
@@ -56,7 +56,7 @@
         <div class="container">
             <ol class="breadcrumb-list">
                 <li class="breadcrumb-item"><a href="../index.html" class="breadcrumb-link">Home</a></li>
-                <li class="breadcrumb-item"><span class="breadcrumb-current">Budget Calculator</span></li>
+                <li class="breadcrumb-item"><span class="breadcrumb-current">Contact</span></li>
             </ol>
         </div>
     </nav>
@@ -65,91 +65,85 @@
     <main id="main-content" class="main-container">
         <div class="container">
             <div class="page-header">
-                <h1>Budget Calculator</h1>
-                <p class="lead">Plan your event expenses and convert currencies in one place.</p>
+                <h1>Contact Us</h1>
+                <p class="lead">We're here to help! Reach out through any of these channels.</p>
             </div>
 
             <div class="two-column-layout">
-                <!-- Primary Column (Calculators) -->
+                <!-- Contact Form -->
                 <div class="content-primary">
-                    <section>
-                        <h2>Estimate Your Expenses</h2>
-                        <form id="budget-form">
+                    <section class="form-container">
+                        <h2>Send us a Message</h2>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="contact-name" class="form-label">Name <span class="required">*</span></label>
+                                <input type="text" id="contact-name" class="form-control" required placeholder="Your full name">
+                            </div>
                             <div class="grid grid-2">
                                 <div class="form-group">
-                                    <label for="eventSelect" class="form-label">Select Event</label>
-                                    <select id="eventSelect" class="form-control">
-                                        <option value="custom">Custom Event</option>
-                                        <option value="1" data-price="65">Salt & Pepper Supper Club (65 EGP)</option>
-                                        <option value="2" data-price="70">Spiritus Natalis (70 EGP)</option>
+                                    <label for="contact-email" class="form-label">Email <span class="required">*</span></label>
+                                    <input type="email" id="contact-email" class="form-control" required placeholder="your@email.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-subject" class="form-label">Subject</label>
+                                    <select id="contact-subject" class="form-control">
+                                        <option value="general">General Inquiry</option>
+                                        <option value="support">Technical Support</option>
+                                        <option value="partnership">Partnership</option>
+                                        <option value="feedback">Feedback</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="ticketPrice" class="form-label">Ticket Price (EGP)</label>
-                                    <input type="number" id="ticketPrice" class="form-control" value="0">
-                                </div>
                             </div>
-
-                            <div class="grid grid-2">
-                                <div class="form-group">
-                                    <label for="numTickets" class="form-label">Number of People</label>
-                                    <input type="number" id="numTickets" class="form-control" value="1" min="1">
-                                </div>
-                                <div class="form-group">
-                                    <label for="transportCost" class="form-label">Transport Budget (EGP)</label>
-                                    <input type="number" id="transportCost" class="form-control" value="0">
-                                </div>
+                            <div class="form-group">
+                                <label for="contact-message" class="form-label">Message <span class="required">*</span></label>
+                                <textarea id="contact-message" class="form-control" rows="6" required placeholder="How can we help you today?"></textarea>
                             </div>
-
-                            <div class="grid grid-2">
-                                <div class="form-group">
-                                    <label for="foodCost" class="form-label">Food Budget (EGP)</label>
-                                    <input type="number" id="foodCost" class="form-control" value="0">
-                                </div>
-                            </div>
-
                             <div class="form-actions">
-                                <button type="button" class="btn btn-primary" id="calculateBudget">Calculate Total</button>
-                                <button type="button" class="btn btn-success" id="saveBudget">Save Locally</button>
+                                <button type="submit" class="btn btn-primary">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
                             </div>
                         </form>
+                    </section>
+                </div>
 
-                        <div id="calculationResult" class="mt-4 hidden">
-                            <div class="card bg-light">
-                                <div class="card-body">
-                                    <h3>Estimated Total: <span class="total-cost text-primary">0.00 EGP</span></h3>
-                                    <p>Cost Per Person: <span class="per-person-cost">0.00 EGP</span></p>
+                <!-- Info Sidebar -->
+                <aside class="content-secondary">
+                    <section class="sidebar-section">
+                        <h3 class="sidebar-title">Contact Information</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt text-primary"></i>
+                                <div>
+                                    <strong>Address</strong>
+                                    <p>Galala University, Suez, Egypt</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone text-primary"></i>
+                                <div>
+                                    <strong>Phone</strong>
+                                    <p>+20 15888</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope text-primary"></i>
+                                <div>
+                                    <strong>Email</strong>
+                                    <p>info@eventsx-gu.edu</p>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    <section class="mt-5">
-                        <h2>Currency Converter</h2>
-                        <div class="grid grid-3 grid-align-end">
-                            <div class="form-group">
-                                <label for="amount" class="form-label">Amount (EGP)</label>
-                                <input type="number" id="amount" class="form-control" placeholder="1000">
-                            </div>
-                            <div class="form-group">
-                                <label for="currency" class="form-label">To Currency</label>
-                                <select id="currency" class="form-control">
-                                    <option value="USD">USD - US Dollar</option>
-                                    <option value="EUR">EUR - Euro</option>
-                                    <option value="GBP">GBP - British Pound</option>
-                                    <option value="KWD">KWD - Kuwaiti Dinar</option>
-                                    <option value="SAR">SAR - Saudi Riyal</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <button type="button" id="convertCurrency" class="btn btn-secondary btn-block">Convert</button>
-                            </div>
-                        </div>
-                        <div id="conversionResult" class="mt-3 hidden">
-                            <p class="lead text-dark">Converted Amount: <strong class="converted-amount">0.00</strong></p>
+                    <section class="sidebar-section">
+                        <h3 class="sidebar-title">Follow Us</h3>
+                        <div class="footer-social">
+                            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </section>
-                </div>
+                </aside>
             </div>
         </div>
     </main>
@@ -161,6 +155,7 @@
                 <div class="footer-section">
                     <h3>EventsX</h3>
                     <p>Your ultimate event planning platform. Discover, register, and manage events with ease.</p>
+                    <!-- Repeated Social links as in Master Footer -->
                     <div class="footer-social">
                         <a href="https://www.facebook.com/EventsXOfficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://twitter.com/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -207,6 +202,5 @@
     </footer>
 
     <script src="../scripts/main.js"></script>
-    <script src="../scripts/budget-calculator.js"></script>
 </body>
 </html>

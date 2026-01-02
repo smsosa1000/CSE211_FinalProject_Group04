@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Get in touch with the EventsX team for support, inquiries, or feedback.">
-    <meta name="author" content="Omar Khalifa 223101614">
-    <title>Contact Us - EventsX</title>
+    <meta name="description" content="Explore and discover amazing events tailored just for you on EventsX.">
+    <meta name="author" content="Saga Taha 223104728">
+    <title>Events Catalog - EventsX</title>
     <link rel="icon" href="../images/logo.png" type="image/png">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,13 +27,13 @@
                 
                 <nav class="primary-nav" id="main-navigation" role="navigation" aria-label="Primary Navigation">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="index.html" class="nav-link active" aria-current="page"><i class="fas fa-home"></i> Home</a></li>
-                        <li class="nav-item"><a href="pages/dashboard.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                        <li class="nav-item"><a href="pages/events.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Events Catalog</a></li>
-                        <li class="nav-item"><a href="pages/registration.html" class="nav-link"><i class="fas fa-user-plus"></i> Registration</a></li>
-                        <li class="nav-item"><a href="pages/budget-calculator.html" class="nav-link"><i class="fas fa-calculator"></i> Budget Calculator</a></li>
-                        <li class="nav-item"><a href="pages/contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact Us</a></li>
-                        <li class="nav-item"><a href="pages/about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li class="nav-item"><a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li class="nav-item"><a href="events.html" class="nav-link active" aria-current="page"><i class="fas fa-calendar-alt"></i> Events Catalog</a></li>
+                        <li class="nav-item"><a href="registration.html" class="nav-link"><i class="fas fa-user-plus"></i> Registration</a></li>
+                        <li class="nav-item"><a href="budget-calculator.html" class="nav-link"><i class="fas fa-calculator"></i> Budget Calculator</a></li>
+                        <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                        <li class="nav-item"><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
                         <li class="nav-item"><a href="https://www.gu.edu.eg" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="fas fa-external-link-alt"></i> Galala University</a></li>
                     </ul>
                 </nav>
@@ -56,7 +56,7 @@
         <div class="container">
             <ol class="breadcrumb-list">
                 <li class="breadcrumb-item"><a href="../index.html" class="breadcrumb-link">Home</a></li>
-                <li class="breadcrumb-item"><span class="breadcrumb-current">Contact</span></li>
+                <li class="breadcrumb-item"><span class="breadcrumb-current">Events Catalog</span></li>
             </ol>
         </div>
     </nav>
@@ -65,83 +65,62 @@
     <main id="main-content" class="main-container">
         <div class="container">
             <div class="page-header">
-                <h1>Contact Us</h1>
-                <p class="lead">We're here to help! Reach out through any of these channels.</p>
+                <h1>Events Catalog</h1>
+                <p class="lead">Explore and discover amazing events tailored just for you</p>
             </div>
 
             <div class="two-column-layout">
-                <!-- Contact Form -->
+                <!-- Primary Column (Events Table) -->
                 <div class="content-primary">
-                    <section class="form-container">
-                        <h2>Send us a Message</h2>
-                        <form id="contact-form">
-                            <div class="form-group">
-                                <label for="contact-name" class="form-label">Name <span class="required">*</span></label>
-                                <input type="text" id="contact-name" class="form-control" required placeholder="Your full name">
-                            </div>
-                            <div class="grid grid-2">
-                                <div class="form-group">
-                                    <label for="contact-email" class="form-label">Email <span class="required">*</span></label>
-                                    <input type="email" id="contact-email" class="form-control" required placeholder="your@email.com">
-                                </div>
-                                <div class="form-group">
-                                    <label for="contact-subject" class="form-label">Subject</label>
-                                    <select id="contact-subject" class="form-control">
-                                        <option value="general">General Inquiry</option>
-                                        <option value="support">Technical Support</option>
-                                        <option value="partnership">Partnership</option>
-                                        <option value="feedback">Feedback</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="contact-message" class="form-label">Message <span class="required">*</span></label>
-                                <textarea id="contact-message" class="form-control" rows="6" required placeholder="How can we help you today?"></textarea>
-                            </div>
-                            <div class="form-actions">
-                                <button type="submit" class="btn btn-primary">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
-                            </div>
-                        </form>
+                    <section class="table-responsive">
+                        <table class="table" id="events-table">
+                            <caption>Available Events List</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Event</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Date & Time</th>
+                                    <th scope="col">Location</th>
+                                    <th scope="col">Cost (EGP)</th>
+                                    <th scope="col">Preview</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="events-tbody">
+                                <!-- Data will be populated dynamically from backend -->
+                                <tr class="loading-row">
+                                    <td colspan="7" class="text-center">Loading events from database...</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </section>
                 </div>
 
-                <!-- Info Sidebar -->
+                <!-- Filters Sidebar -->
                 <aside class="content-secondary">
                     <section class="sidebar-section">
-                        <h3 class="sidebar-title">Contact Information</h3>
-                        <div class="contact-details">
-                            <div class="contact-item">
-                                <i class="fas fa-map-marker-alt text-primary"></i>
-                                <div>
-                                    <strong>Address</strong>
-                                    <p>Galala University, Suez, Egypt</p>
-                                </div>
+                        <h3 class="sidebar-title">Filters</h3>
+                        <form id="filter-form">
+                            <div class="form-group">
+                                <label for="category-filter" class="form-label">Category</label>
+                                <select id="category-filter" class="form-control">
+                                    <option value="all">All Categories</option>
+                                    <option value="food">Food</option>
+                                    <option value="music">Music</option>
+                                    <option value="culture">Culture</option>
+                                    <option value="business">Business</option>
+                                    <option value="leisure">Leisure</option>
+                                </select>
                             </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone text-primary"></i>
-                                <div>
-                                    <strong>Phone</strong>
-                                    <p>+20 15888</p>
-                                </div>
+                            <div class="form-group">
+                                <label for="price-sort" class="form-label">Sort By Price</label>
+                                <select id="price-sort" class="form-control">
+                                    <option value="none">Default</option>
+                                    <option value="low">Low to High</option>
+                                    <option value="high">High to Low</option>
+                                </select>
                             </div>
-                            <div class="contact-item">
-                                <i class="fas fa-envelope text-primary"></i>
-                                <div>
-                                    <strong>Email</strong>
-                                    <p>info@eventsx-gu.edu</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="sidebar-section">
-                        <h3 class="sidebar-title">Follow Us</h3>
-                        <div class="footer-social">
-                            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
+                        </form>
                     </section>
                 </aside>
             </div>
@@ -155,7 +134,6 @@
                 <div class="footer-section">
                     <h3>EventsX</h3>
                     <p>Your ultimate event planning platform. Discover, register, and manage events with ease.</p>
-                    <!-- Repeated Social links as in Master Footer -->
                     <div class="footer-social">
                         <a href="https://www.facebook.com/EventsXOfficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://twitter.com/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -202,5 +180,6 @@
     </footer>
 
     <script src="../scripts/main.js"></script>
+    <script src="../scripts/events.js"></script>
 </body>
 </html>
