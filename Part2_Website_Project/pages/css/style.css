@@ -16,7 +16,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333333;
-    background-color: #f8f9fa;
+    background-color: #f7f3ff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -24,7 +24,7 @@ body {
 
 
 .hero {
-    background: linear-gradient(135deg, #97c1e9 0%, #3498db 100%);
+    background: linear-gradient(135deg, #9b59b6 0%, #3498db 100%);
     background-size: cover;
     background-position: center;
     color: white;
@@ -56,13 +56,13 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     font-size: 2.8rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #98ace9 0%, #5dabf4 100%);
+    background: linear-gradient(135deg, #9b59b6 0%, #3498db 100%);
     border: solid 1px;
 }
 
 h2 {
     font-size: 2.2rem;
-    border-bottom: 3px solid #3498db;
+    border-bottom: 3px solid #f39c12;
     padding-bottom: 0.5rem;
     margin-top: 2rem;
     margin-bottom: 1.5rem;
@@ -102,7 +102,7 @@ a {
 }
 
 a:hover {
-    color: #2980b9;
+    color: #9b59b6;
     text-decoration: underline;
 }
 
@@ -143,7 +143,7 @@ em {
 
 /* ========== HEADER & NAVIGATION ========== */
 .site-header {
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    background: linear-gradient(135deg, #2d1b3d 0%, #1f3a5f 100%);
     color: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     position: sticky;
@@ -200,7 +200,7 @@ em {
 
 /* Primary Navigation */
 .primary-nav {
-    background: rgba(52, 73, 94, 0.95);
+    background: rgba(31, 58, 95, 0.92);
     border-radius: 10px;
     padding: 0.75rem 1.5rem;
 }
@@ -315,7 +315,7 @@ em {
 
 .breadcrumb-item:not(:last-child)::after {
     content: "›";
-    color: #7f8c8d;
+    color: #9b59b6;
     font-weight: bold;
 }
 
@@ -341,7 +341,7 @@ em {
     text-align: center;
     margin-bottom: 3rem;
     padding: 2rem;
-    background: linear-gradient(135deg, #97c1e9 0%, #3498db 100%);
+    background: linear-gradient(135deg, #9b59b6 0%, #3498db 100%);
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
@@ -727,25 +727,25 @@ article.card {
 }
 
 .btn-secondary {
-    background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+    background: linear-gradient(135deg, #9b59b6 0%, #f39c12 100%);
     color: white;
 }
 
 .btn-secondary:hover {
-    background: linear-gradient(135deg, #7f8c8d 0%, #6c7b7d 100%);
+    background: linear-gradient(135deg, #8e44ad 0%, #e67e22 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(149, 165, 166, 0.3);
+    box-shadow: 0 6px 15px rgba(155, 89, 182, 0.3);
 }
 
 .btn-success {
-    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    background: linear-gradient(135deg, #9b59b6 0%, #3498db 100%);
     color: white;
 }
 
 .btn-success:hover {
-    background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
+    background: linear-gradient(135deg, #9b59b6 0%, #2980b9 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(46, 204, 113, 0.3);
+    box-shadow: 0 6px 15px rgba(155, 89, 182, 0.3);
 }
 
 .btn-outline {
@@ -765,7 +765,7 @@ article.card {
 }
 
 .progress-fill.success {
-    background: #2ecc71;
+    background: #9b59b6;
 }
 
 .progress-fill.warning {
@@ -816,7 +816,7 @@ article.card {
 }
 
 
-.border-success { border-color: #2ecc71; }
+.border-success { border-color: #9b59b6; }
 .border-warning { border-color: #f39c12; }
 .border-danger { border-color: #e74c3c; }
 
@@ -1070,7 +1070,7 @@ article.card {
 
 /* ========== FOOTER ========== */
 .site-footer {
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    background: linear-gradient(135deg, #2d1b3d 0%, #1f3a5f 100%);
     color: white;
     padding: 4rem 0 2rem;
     margin-top: auto;
@@ -1102,7 +1102,7 @@ article.card {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px solid #f39c12;
 }
 
 .footer-section h4 {
@@ -1110,7 +1110,7 @@ article.card {
     font-size: 1.3rem;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px solid #f39c12;
 }
 
 .footer-links {
@@ -1131,7 +1131,7 @@ article.card {
 }
 
 .footer-links a:hover {
-    color: #3498db;
+    color: #f39c12;
     text-decoration: none;
 }
 
@@ -1141,7 +1141,7 @@ article.card {
 }
 
 .footer-contact a {
-    color: #3498db;
+    color: #f39c12;
 }
 
 .footer-social {
@@ -1164,7 +1164,7 @@ article.card {
 }
 
 .social-link:hover {
-    background: #3498db;
+    background: #9b59b6;
     transform: translateY(-3px);
     text-decoration: none;
 }
@@ -1193,7 +1193,7 @@ article.card {
 }
 
 .footer-bottom-links a:hover {
-    color: #3498db;
+    color: #f39c12;
 }
 
 /* ========== SPECIAL COMPONENTS ========== */
@@ -1282,7 +1282,7 @@ article.card {
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #3498db, #2ecc71);
+    background: linear-gradient(90deg, #3498db, #9b59b6);
     border-radius: 5px;
     transition: width 1s ease-in-out;
 }
@@ -1314,9 +1314,9 @@ article.card {
 }
 
 .badge.success {
-    background: #e8f5e9;
-    border-color: #2ecc71;
-    color: #27ae60;
+    background: #e3f2fd;
+    border-color: #9b59b6;
+    color: #9b59b6;
 }
 
 .badge.warning {
@@ -1374,7 +1374,7 @@ article.card {
 .grid-3 > * { flex: 0 0 calc(33.333% - 0.6667rem); }
 .grid-4 > * { flex: 0 0 calc(25% - 0.75rem); }
 
-/* Minor layout tweak: add breathing room for centered content in 3-column grids */
+
 .grid-3 .text-center {
     padding-top: 1rem;
 }
@@ -1390,8 +1390,8 @@ article.card {
 
 
 .bg-primary { background-color: #3498db; }
-.bg-secondary { background-color: #95a5a6; }
-.bg-success { background-color: #2ecc71; }
+.bg-secondary { background-color: #6c5ce7; }
+.bg-success { background-color: #9b59b6; }
 .bg-warning { background-color: #f39c12; }
 .bg-danger { background-color: #e74c3c; }
 .bg-light { background-color: #f8f9fa; }
@@ -1408,12 +1408,12 @@ article.card {
   color: inherit;
 }
 .text-primary { color: #3498db; }
-.text-secondary { color: #7f8c8d; }
-.text-success { color: #27ae60; }
+.text-secondary { color: #6c5ce7; }
+.text-success { color: #9b59b6; }
 .text-warning { color: #f39c12; }
 .text-danger { color: #e74c3c; }
 .text-dark { color: #2c3e50; }
-.text-muted { color: #95a5a6; }
+.text-muted { color: #636e72; }
 
 .border { border: 1px solid #dfe6e9; }
 .border-top { border-top: 1px solid #dfe6e9; }

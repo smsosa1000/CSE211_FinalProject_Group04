@@ -29,9 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ========== ACCESSIBILITY MODULE ==========
 function initAccessibility() {
-    // Add skip to main content link
-    addSkipToContentLink();
-    
     // Enhance focus visibility
     enhanceFocusStyles();
     
@@ -40,22 +37,6 @@ function initAccessibility() {
     
     // Keyboard navigation improvements
     initKeyboardNavigation();
-}
-
-function addSkipToContentLink() {
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main-content';
-    skipLink.className = 'skip-link';
-    skipLink.textContent = 'Skip to main content';
-    skipLink.setAttribute('aria-label', 'Skip to main content');
-    
-    document.body.insertBefore(skipLink, document.body.firstChild);
-    
-    // Ensure main content has id
-    const mainContent = document.querySelector('main');
-    if (mainContent && !mainContent.id) {
-        mainContent.id = 'main-content';
-    }
 }
 
 function enhanceFocusStyles() {
