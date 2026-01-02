@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register or Login to EventsX - Your personal event planning companion.">
+    <meta name="author" content="Mohamed Samir 223104766">
+    <title>Login & Registration - EventsX</title>
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- ========== HEADER SECTION ========== -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo-area">
+                    <a href="../index.html" class="logo-link">
+                        <img src="../images/logo.png" alt="EventsX Logo" class="site-logo" width="90" height="90">
+                        <div class="site-branding">
+                            <h1>EventsX</h1>
+                            <p class="tagline">Dynamic Responsive Event Planner</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <nav class="primary-nav" id="main-navigation" role="navigation" aria-label="Primary Navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link active" aria-current="page"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item"><a href="pages/dashboard.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li class="nav-item"><a href="pages/events.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Events Catalog</a></li>
+                        <li class="nav-item"><a href="pages/registration.html" class="nav-link"><i class="fas fa-user-plus"></i> Registration</a></li>
+                        <li class="nav-item"><a href="pages/budget-calculator.html" class="nav-link"><i class="fas fa-calculator"></i> Budget Calculator</a></li>
+                        <li class="nav-item"><a href="pages/contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                        <li class="nav-item"><a href="pages/about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li class="nav-item"><a href="https://www.gu.edu.eg" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="fas fa-external-link-alt"></i> Galala University</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <a href="registration.html" class="login-icon-link" aria-label="Login or Register">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Login</span>
+                    </a>
+                    <button class="nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== BREADCRUMB NAVIGATION ========== -->
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="../index.html" class="breadcrumb-link">Home</a></li>
+                <li class="breadcrumb-item"><span class="breadcrumb-current">Registration & Login</span></li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="main-content" class="main-container auth-page-wrapper">
+        <div class="auth-container">
+            <!-- Sidebar for toggling -->
+            <div class="auth-sidebar">
+                <h2 id="sidebar-title">New Here?</h2>
+                <p id="sidebar-text">Join EventsX and start planning your next amazing experience!</p>
+                <button class="auth-toggle-btn" id="auth-toggle-btn">Sign Up</button>
+            </div>
+
+            <!-- Main form area -->
+            <div class="auth-main">
+                <div class="auth-form-wrapper">
+                    <!-- Login Form -->
+                    <section class="auth-form active" id="login-form">
+                        <h2>Login</h2>
+                        <form action="dashboard.html" id="login-form-element">
+                            <div class="form-group">
+                                <label for="login-username" class="form-label">Username or Email</label>
+                                <input type="text" id="login-username" class="form-control" required placeholder="Enter your credentials">
+                            </div>
+                            <div class="form-group">
+                                <label for="login-password" class="form-label">Password</label>
+                                <input type="password" id="login-password" class="form-control" required placeholder="Enter your password">
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- Multi-step Registration Form -->
+                    <section class="auth-form" id="signup-form">
+                        <h2>Join EventsX</h2>
+                        <form action="thank-you.html" id="signup-form-element" method="GET">
+                            <!-- Step 1: Account Info -->
+                            <div class="form-step active" id="step-0">
+                                <h3>Step 1: Account</h3>
+                                <div class="form-group">
+                                    <label for="reg-username" class="form-label">Username <span class="required">*</span></label>
+                                    <input type="text" id="reg-username" name="username" class="form-control" required placeholder="Choose a username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-password" class="form-label">Password <span class="required">*</span></label>
+                                    <input type="password" id="reg-password" name="password" class="form-control" required placeholder="Minimum 8 characters">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-confirm-password" class="form-label">Confirm Password <span class="required">*</span></label>
+                                    <input type="password" id="reg-confirm-password" class="form-control" required placeholder="Repeat password">
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-primary btn-next">Next: Personal Info <i class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Personal Info -->
+                            <div class="form-step" id="step-1">
+                                <h3>Step 2: Personal Info</h3>
+                                <div class="form-group">
+                                    <label for="reg-fullname" class="form-label">Full Name <span class="required">*</span></label>
+                                    <input type="text" id="reg-fullname" name="fullname" class="form-control" required placeholder="Enter your full name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-email" class="form-label">Email Address <span class="required">*</span></label>
+                                    <input type="email" id="reg-email" name="email" class="form-control" required placeholder="your@email.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-phone" class="form-label">Phone Number</label>
+                                    <input type="tel" id="reg-phone" name="phone" class="form-control" placeholder="+20 ...">
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-outline btn-prev"><i class="fas fa-chevron-left"></i> Back</button>
+                                    <button type="button" class="btn btn-primary btn-next">Next: Event Selection <i class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Event Selection -->
+                            <div class="form-step" id="step-2">
+                                <h3>Step 3: Event Selection</h3>
+                                <div class="form-group">
+                                    <label for="reg-event" class="form-label">Choose Event <span class="required">*</span></label>
+                                    <select id="reg-event" name="event" class="form-control" required>
+                                        <option value="">-- Loading Events --</option>
+                                        <!-- Will be populated dynamically -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-dietary" class="form-label">Dietary Requirements</label>
+                                    <textarea id="reg-dietary" name="dietary" class="form-control" rows="3" placeholder="Any special needs?"></textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-outline btn-prev"><i class="fas fa-chevron-left"></i> Back</button>
+                                    <button type="submit" class="btn btn-success">Complete Registration <i class="fas fa-check"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER SECTION ========== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EventsX</h3>
+                    <p>Your ultimate event planning platform. Discover, register, and manage events with ease.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/EventsXOfficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/eventsx" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/eventsxofficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events Catalog</a></li>
+                        <li><a href="registration.html"><i class="fas fa-chevron-right"></i> Registration</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <address class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:info@eventsx-gu.edu">info@eventsx-gu.edu</a></p>
+                        <p><i class="fas fa-phone"></i> +20 15888</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Galala University, Suez, Egypt</p>
+                    </address>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Help Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span class="current-year">2025</span> EventsX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/auth.js"></script>
+</body>
+</html>

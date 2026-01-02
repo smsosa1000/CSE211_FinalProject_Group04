@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage your event registrations, profile, and budget from your personal EventsX dashboard.">
+    <meta name="author" content="Group05">
+    <title>Dashboard - EventsX</title>
+    <link rel="icon" href="../images/logo.png" type="image/png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- ========== HEADER SECTION ========== -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo-area">
+                    <a href="../index.html" class="logo-link">
+                        <img src="../images/logo.png" alt="EventsX Logo" class="site-logo" width="90" height="90">
+                        <div class="site-branding">
+                            <h1>EventsX</h1>
+                            <p class="tagline">Dynamic Responsive Event Planner</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <nav class="primary-nav" id="main-navigation" role="navigation" aria-label="Primary Navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link active" aria-current="page"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item"><a href="pages/dashboard.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li class="nav-item"><a href="pages/events.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Events Catalog</a></li>
+                        <li class="nav-item"><a href="pages/registration.html" class="nav-link"><i class="fas fa-user-plus"></i> Registration</a></li>
+                        <li class="nav-item"><a href="pages/budget-calculator.html" class="nav-link"><i class="fas fa-calculator"></i> Budget Calculator</a></li>
+                        <li class="nav-item"><a href="pages/contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                        <li class="nav-item"><a href="pages/about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li class="nav-item"><a href="https://www.gu.edu.eg" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="fas fa-external-link-alt"></i> Galala University</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <a href="registration.html" class="login-icon-link" aria-label="Login or Register">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Login</span>
+                    </a>
+                    <button class="nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== BREADCRUMB NAVIGATION ========== -->
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="../index.html" class="breadcrumb-link">Home</a></li>
+                <li class="breadcrumb-item"><span class="breadcrumb-current">Dashboard</span></li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="main-content" class="main-container">
+        <div class="container">
+            <div class="page-header">
+                <h1>Dashboard</h1>
+                <p class="lead">Manage your event activities and account preferences effortlessly.</p>
+            </div>
+
+            <div class="two-column-layout">
+                <!-- Primary Sidebar / Stats -->
+                <aside class="content-secondary">
+                    <section class="sidebar-section text-center">
+                        <img src="../images/logo.png" alt="User Avatar" class="rounded-circle border-primary mb-3" width="120" height="120" id="user-avatar">
+                        <h2 class="sidebar-title" id="user-name">Loading Profile...</h2>
+                        <ul class="list-unstyled text-left" id="user-details">
+                            <!-- Dynamic user info -->
+                        </ul>
+                        <button class="btn btn-sm btn-outline btn-block mt-3">Edit Profile</button>
+                    </section>
+
+                    <section class="sidebar-section">
+                        <h3 class="sidebar-title">Quick Stats</h3>
+                        <div class="p-2" id="user-stats">
+                            <!-- Dynamic stats -->
+                        </div>
+                    </section>
+                </aside>
+
+                <!-- Primary Content / Events -->
+                <div class="content-primary">
+                    <section>
+                        <h2>My Registered Events</h2>
+                        <div class="article-grid" id="dashboard-events">
+                            <!-- Data will be populated from backend/DB -->
+                            <div class="card text-center p-5">
+                                <p class="text-muted">No events registered yet. Browse our catalog to join amazing experiences!</p>
+                                <a href="events.html" class="btn btn-primary">Browse Events</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="mt-5">
+                        <h2>Notifications</h2>
+                        <div class="card" id="dashboard-notifications">
+                            <ul class="list-unstyled p-0 m-0">
+                                <li class="p-3">No new notifications.</li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER SECTION ========== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EventsX</h3>
+                    <p>Your ultimate event planning platform. Discover, register, and manage events with ease.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/EventsXOfficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/eventsx" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/eventsxofficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events Catalog</a></li>
+                        <li><a href="registration.html"><i class="fas fa-chevron-right"></i> Registration</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <address class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:info@eventsx-gu.edu">info@eventsx-gu.edu</a></p>
+                        <p><i class="fas fa-phone"></i> +20 15888</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Galala University, Suez, Egypt</p>
+                    </address>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Help Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span class="current-year">2025</span> EventsX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+</body>
+</html>
