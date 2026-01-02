@@ -1,21 +1,80 @@
 /**
  * EVENTSX - Events Catalog Logic
- * Handles event rendering, filtering, and interactions
+ * Refactored to ES6 Class Structure
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-    const eventsTable = document.getElementById('events-tbody');
-    if (eventsTable) {
-        renderEvents(mockEvents); // Initial render with mock data
-        initFilters();
+class EventCatalog {
+    constructor(data) {
+        this.events = data;
+        this.tbody = document.getElementById('events-tbody');
+        this.categoryFilter = document.getElementById('category-filter');
+        this.priceSort = document.getElementById('price-sort');
+
+        if (this.tbody) {
+            this.init();
+        }
     }
-});
 
-/**
- * MOCK DATA - Prepared for Backend Integration
- * These 21 events correspond to the user's latest requirement.
- */
-const mockEvents = [
+    init() {
+        this.render(this.events);
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        if (this.categoryFilter) {
+            this.categoryFilter.addEventListener('change', () => this.filterAndSort());
+        }
+        if (this.priceSort) {
+            this.priceSort.addEventListener('change', () => this.filterAndSort());
+        }
+    }
+
+    render(data) {
+        if (!this.tbody) return;
+
+        if (data.length === 0) {
+            this.tbody.innerHTML = '<tr><td colspan="7" class="text-center">No events found matching your criteria.</td></tr>';
+            return;
+        }
+
+        this.tbody.innerHTML = data.map(event => `
+            <tr>
+                <td><strong>${event.name}</strong></td>
+                <td><span class="badge primary">${event.category}</span></td>
+                <td><time>${event.date}</time></td>
+                <td>${event.location}</td>
+                <td>${event.cost.toFixed(2)}</td>
+                <td>
+                    <figure class="table-figure">
+                        <img src="../images/events/${event.image}" alt="${event.name}" width="80" height="60" onerror="this.src='../images/logo.png'">
+                    </figure>
+                </td>
+                <td><a href="registration.html?event=${encodeURIComponent(event.name)}" class="btn btn-sm btn-primary">Register</a></td>
+            </tr>
+        `).join('');
+    }
+
+    filterAndSort() {
+        const category = this.categoryFilter.value.toLowerCase();
+        const sort = this.priceSort.value;
+
+        let filtered = this.events.filter(event => {
+            if (category === 'all') return true;
+            return event.category.toLowerCase().includes(category);
+        });
+
+        if (sort === 'low') {
+            filtered.sort((a, b) => a.cost - b.cost);
+        } else if (sort === 'high') {
+            filtered.sort((a, b) => b.cost - a.cost);
+        }
+
+        this.render(filtered);
+    }
+}
+
+// Mock Data
+const MOCK_EVENTS = [
     { name: 'Salt & Pepper Supper Club', category: 'Food', date: 'Jan 3, 2026, 10:00 PM', location: 'London', cost: 65, image: 'event1_salt_pepper_supper_club.jpeg' },
     { name: 'Spiritus Natalis', category: 'Music / Culture', date: 'Jan 1, 2026, 9:00 PM', location: 'Porto', cost: 70, image: 'event2_spiritus_natalis.jpeg' },
     { name: 'Carrossel Veneziano', category: 'Leisure', date: 'Jan 1, 2026, 12:00 AM', location: 'Cascais', cost: 40, image: 'event3_carrossel_veneziano.jpeg' },
@@ -39,58 +98,6 @@ const mockEvents = [
     { name: 'Shanghai Lounge: Cocktail Masterclass', category: 'Food / Nightlife', date: 'Mar 23, 2026, 8:00 PM', location: 'London', cost: 160, image: 'event21_shanghai_lounge.jpeg' }
 ];
 
-function renderEvents(data) {
-    const tbody = document.getElementById('events-tbody');
-    if (!tbody) return;
-
-    if (data.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" class="text-center">No events found matching your criteria.</td></tr>';
-        return;
-    }
-
-    tbody.innerHTML = data.map(event => `
-        <tr>
-            <td><strong>${event.name}</strong></td>
-            <td><span class="badge primary">${event.category}</span></td>
-            <td><time>${event.date}</time></td>
-            <td>${event.location}</td>
-            <td>${event.cost.toFixed(2)}</td>
-            <td>
-                <figure class="table-figure">
-                    <img src="../images/events/${event.image}" alt="${event.name}" width="80" height="60" onerror="this.src='../images/logo.png'">
-                </figure>
-            </td>
-            <td><a href="registration.html?event=${encodeURIComponent(event.name)}" class="btn btn-sm btn-primary">Register</a></td>
-        </tr>
-    `).join('');
-}
-
-function initFilters() {
-    const categoryFilter = document.getElementById('category-filter');
-    const priceSort = document.getElementById('price-sort');
-
-    if (categoryFilter) {
-        categoryFilter.addEventListener('change', filterAndSort);
-    }
-    if (priceSort) {
-        priceSort.addEventListener('change', filterAndSort);
-    }
-}
-
-function filterAndSort() {
-    const category = document.getElementById('category-filter').value.toLowerCase();
-    const sort = document.getElementById('price-sort').value;
-
-    let filtered = mockEvents.filter(event => {
-        if (category === 'all') return true;
-        return event.category.toLowerCase().includes(category);
-    });
-
-    if (sort === 'low') {
-        filtered.sort((a, b) => a.cost - b.cost);
-    } else if (sort === 'high') {
-        filtered.sort((a, b) => b.cost - a.cost);
-    }
-
-    renderEvents(filtered);
-}
+document.addEventListener('DOMContentLoaded', () => {
+    window.eventCatalog = new EventCatalog(MOCK_EVENTS);
+});
