@@ -280,11 +280,18 @@ function enhanceBreadcrumbs() {
         
         const link = item.querySelector('a');
         if (link) {
-            const span = document.createElement('span');
-            span.setAttribute('itemprop', 'name');
-            span.textContent = link.textContent;
-            link.appendChild(span);
-            
+            // Avoid duplicating text if this enhancement runs more than once
+            if (!link.querySelector('[itemprop="name"]')) {
+                const span = document.createElement('span');
+                span.setAttribute('itemprop', 'name');
+
+                // Move existing link contents into the name span (prevents "HomeHome")
+                while (link.firstChild) {
+                    span.appendChild(link.firstChild);
+                }
+                link.appendChild(span);
+            }
+
             link.setAttribute('itemprop', 'item');
         }
     });
