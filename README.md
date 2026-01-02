@@ -2,20 +2,6 @@
 
 EventsX is a modern event management platform designed for seamless discovery and registration.
 
-## Team & Contributions
-
-### Samaa Mohamed (223101629) - Team Leader
-
-- HTML5 Validation & Specifications (Index, Budget)
-- JavaScript Specifications (Main Logic)
-- Universal Page Requirements (Consistent Navigation)
-- Web Project Logical Folder Structure
-- Written Report (Appendix B: Team Contribution)
-
-### Saga Taha (223104728) - Developer
-
-- Browser Compatibility Testing
-- HTML Specifications (Events, Thank-you)
 - JavaScript Specifications (Main Logic)
 - Universal Page Requirements (Code Quality)
 - Written Report (Appendix C: Additional Visualisations)
