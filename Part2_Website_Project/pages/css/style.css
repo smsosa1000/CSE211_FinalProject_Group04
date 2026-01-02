@@ -140,24 +140,6 @@ em {
     border: 0;
 }
 
-/* Skip link (shown on keyboard focus) */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 10px;
-    background: #2c3e50;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 600;
-    z-index: 9999;
-    transition: top 0.3s ease;
-}
-
-.skip-link:focus {
-    top: 10px;
-}
 
 /* ========== HEADER & NAVIGATION ========== */
 .site-header {
@@ -353,9 +335,7 @@ em {
 }
 
 /* ========== MAIN CONTENT AREA ========== */
-.main-content-area {
-    padding: 2rem;
-}
+
 
 .page-header {
     text-align: center;
@@ -458,9 +438,7 @@ em {
     border-color: #3498db;
 }
 
-.card-header {
-    padding: 1.5rem 1.5rem 0.5rem;
-}
+
 
 .card-title {
     font-size: 1.5rem;
@@ -468,11 +446,6 @@ em {
     color: #2c3e50;
 }
 
-.card-subtitle {
-    color: #7f8c8d;
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
-}
 
 .card-body {
     padding: 0 1.5rem 1.5rem;
@@ -1509,10 +1482,7 @@ article.card {
         padding: 0 1rem;
     }
     
-    .main-content-area {
-        padding: 1.5rem;
-    }
-    
+
     .form-container {
         padding: 1.5rem;
     }
@@ -1647,9 +1617,6 @@ article.card {
         padding: 0;
     }
     
-    .main-content-area {
-        padding: 0;
-    }
     
     .content-primary {
         box-shadow: none;
