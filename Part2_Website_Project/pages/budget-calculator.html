@@ -117,8 +117,14 @@
                         <div id="calculationResult" class="mt-4 hidden">
                             <div class="card bg-light">
                                 <div class="card-body">
-                                    <h3>Estimated Total: <span class="total-cost text-primary">0.00 EGP</span></h3>
-                                    <p>Cost Per Person: <span class="per-person-cost">0.00 EGP</span></p>
+                                    <div class="form-group">
+                                        <label class="form-label">Estimated Total</label>
+                                        <input type="text" id="totalCostInput" class="form-control" readonly placeholder="0.00 EGP">
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <label class="form-label">Cost Per Person</label>
+                                        <input type="text" id="perPersonCostInput" class="form-control" readonly placeholder="0.00 EGP">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -146,7 +152,10 @@
                             </div>
                         </div>
                         <div id="conversionResult" class="mt-3 hidden">
-                            <p class="lead text-dark">Converted Amount: <strong class="converted-amount">0.00</strong></p>
+                            <div class="form-group">
+                                <label class="form-label">Result</label>
+                                <input type="text" id="convertedAmountInput" class="form-control" readonly placeholder="0.00">
+                            </div>
                         </div>
                     </section>
                 </div>

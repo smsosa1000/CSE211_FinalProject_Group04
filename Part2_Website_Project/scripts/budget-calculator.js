@@ -43,9 +43,11 @@ class BudgetCalculator {
         const calcBtn = document.getElementById("calculateBudget");
         if (calcBtn) {
             calcBtn.addEventListener("click", () => {
-                document.getElementById("calculationResult").style.display = "block";
+                const resultBox = document.getElementById("calculationResult");
+                resultBox.classList.remove("hidden");
+                resultBox.style.display = "block"; // Force display in case !important persists or other styles interfere
                 this.calculate();
-                document.getElementById("calculationResult").scrollIntoView({ behavior: "smooth" });
+                resultBox.scrollIntoView({ behavior: "smooth" });
             });
         }
 
@@ -65,43 +67,38 @@ class BudgetCalculator {
         const numPeople = parseFloat(this.form.querySelector("#numTickets")?.value) || 1;
         const transport = parseFloat(this.form.querySelector("#transportCost")?.value) || 0;
         const food = parseFloat(this.form.querySelector("#foodCost")?.value) || 0;
-        const accomPrice = parseFloat(this.form.querySelector("#accommodationCost")?.value) || 0;
-        const nights = parseFloat(this.form.querySelector("#accommodationNights")?.value) || 0;
 
         const eventSubtotal = ticketPrice * numPeople;
-        const travelStay = transport + (accomPrice * nights);
-        const grandTotal = eventSubtotal + travelStay + food;
-        const perPerson = numPeople > 0 ? grandTotal / numPeople : 0;
+        const totalCost = eventSubtotal + transport + food;
+        const perPerson = numPeople > 0 ? totalCost / numPeople : 0;
 
-        this.updateDisplay(grandTotal, perPerson, eventSubtotal, travelStay, food, numPeople, nights);
+        this.updateDisplay(totalCost, perPerson, eventSubtotal, transport, food, numPeople);
     }
 
-    updateDisplay(total, perPerson, subtotal, travel, food, people, nights) {
+    updateDisplay(total, perPerson, subtotal, transport, food, people) {
         const format = (v) => `${v.toLocaleString(undefined, { minimumFractionDigits: 2 })} EGP`;
         
         const els = {
-            total: document.querySelector(".total-cost"),
-            perPerson: document.querySelector(".per-person-cost"),
-            portion: document.querySelector(".event-portion-cost"),
+            total: document.getElementById("totalCostInput"),
+            perPerson: document.getElementById("perPersonCostInput"),
             tableTotal: document.getElementById("totalBudgetAmount")
         };
 
-        if (els.total) els.total.textContent = format(total);
-        if (els.perPerson) els.perPerson.textContent = format(perPerson);
-        if (els.portion) els.portion.textContent = format(subtotal);
+        if (els.total) els.total.value = format(total);
+        if (els.perPerson) els.perPerson.value = format(perPerson);
         if (els.tableTotal) els.tableTotal.textContent = format(total);
 
-        this.renderBreakdown(subtotal, travel, food, total, people, nights, format);
+        this.renderBreakdown(subtotal, transport, food, total, people, format);
     }
 
-    renderBreakdown(subtotal, travel, food, total, people, nights, format) {
+    renderBreakdown(subtotal, transport, food, total, people, format) {
         const breakdown = document.getElementById("budgetBreakdown");
         if (!breakdown) return;
 
         const categories = [
-            { name: "Event Tickets", amount: subtotal, notes: `${people} people` },
-            { name: "Travel & Stay", amount: travel, notes: `${nights} nights + transport` },
-            { name: "Food & Meals", amount: food, notes: "Total budget" }
+            { name: "Event Tickets", amount: subtotal, notes: `${people} person(s)` },
+            { name: "Transport", amount: transport, notes: "Travel expenses" },
+            { name: "Food & Meals", amount: food, notes: "Catering/Food" }
         ];
 
         breakdown.innerHTML = categories.map(cat => {
@@ -117,8 +114,8 @@ class BudgetCalculator {
 
     saveBudget() {
         const eventName = this.form.querySelector("#eventSelect option:checked").text;
-        const total = document.querySelector(".total-cost").textContent;
-        const perPerson = document.querySelector(".per-person-cost").textContent;
+        const total = document.getElementById("totalCostInput")?.value || "0.00 EGP";
+        const perPerson = document.getElementById("perPersonCostInput")?.value || "0.00 EGP";
 
         const budgetData = {
             event: eventName,
@@ -139,7 +136,7 @@ class BudgetCalculator {
     convertCurrency() {
         const amountEl = document.getElementById("amount");
         const currencyEl = document.getElementById("currency");
-        const resultEl = document.querySelector(".converted-amount");
+        const resultEl = document.getElementById("convertedAmountInput");
 
         if (!amountEl || !currencyEl) return;
 
@@ -148,8 +145,10 @@ class BudgetCalculator {
         const converted = amount * (rates[currencyEl.value] || 1);
 
         if (resultEl) {
-            resultEl.textContent = `${converted.toFixed(2)} ${currencyEl.value}`;
-            document.getElementById("conversionResult").style.display = "block";
+            resultEl.value = `${converted.toFixed(2)} ${currencyEl.value}`;
+            const conversionBox = document.getElementById("conversionResult");
+            conversionBox.classList.remove("hidden");
+            conversionBox.style.display = "block"; // Force display
         }
     }
 }
