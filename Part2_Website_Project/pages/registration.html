@@ -3,547 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Register for events on EventsX platform. Complete the registration form to secure your spot. - EventsX">
-    <meta name="keywords" content="event registration, sign up, register for events, EventsX registration">
-    <meta name="author" content="Group05_223101629_223101614_223101XXX_223101YYY">
+    <meta name="author" content="Mohamed Samir (223104766)">
     <title>Registration - EduConnect</title>
+<!-- Implemented by Mohamed Samir (223104766) -->
     <link rel="icon" href="../images/logo.png" type="image/png">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <!-- AI Usage: Used for structure guidance and semantic element explanations -->
-    
-    <!-- ========== HEADER SECTION ========== -->
-    <header class="site-header">
-        <div class="container">
-            <div class="header-wrapper">
-                <div class="logo-area">
-                    <img src="../images/logo.png" alt="EventsX Logo" class="site-logo" width="90" height="90">
-                    <div class="site-branding">
-                        <h1>EventsX</h1>
-                        <p class="tagline">Dynamic Responsive Event Planner</p>
-                    </div>
-                </div>
-                
-                <nav class="primary-nav" id="main-navigation" aria-label="Primary Navigation">
-                    <ul class="nav-list">
-                        <li class="nav-item"><a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
-                        <li class="nav-item"><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About Us</a></li>
-                        <li class="nav-item"><a href="events.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Events Catalog</a></li>
-                        <li class="nav-item"><a href="registration.html" class="nav-link active" aria-current="page"><i class="fas fa-user-plus"></i> Registration</a></li>
-                        <li class="nav-item"><a href="budget-calculator.html" class="nav-link"><i class="fas fa-calculator"></i> Budget Calculator</a></li>
-                        <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
-                        <li class="nav-item"><a href="student-dashboard.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                        <li class="nav-item"><a href="https://www.gu.edu.eg" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="fas fa-external-link-alt"></i> Galala University</a></li>
-                    </ul>
-                </nav>
+
+<header class="site-header">
+    <div class="container header-wrapper">
+        <div class="logo-area">
+            <img src="../images/logo.png" alt="EventsX Logo" width="90" height="90">
+            <div>
+                <h1>EventsX</h1>
+                <p class="tagline">Dynamic Responsive Event Planner</p>
             </div>
         </div>
-    </header>
-    <!-- ========== END HEADER SECTION ========== -->
 
-    <!-- ========== BREADCRUMB NAVIGATION ========== -->
-    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
-        <div class="container">
-            <ol class="breadcrumb-list">
-                <li class="breadcrumb-item">
-                    <a href="../index.html" class="breadcrumb-link">Home</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <span class="breadcrumb-current">Registration</span>
-                </li>
-            </ol>
-        </div>
-    </nav>
-    <!-- ========== END BREADCRUMB NAVIGATION ========== -->
+        <nav class="primary-nav" aria-label="Primary Navigation">
+            <ul class="nav-list">
+                <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                <li><a href="registration.html" class="active" aria-current="page">
+                    <i class="fas fa-user-plus"></i> Registration</a></li>
+                <li><a href="budget-calculator.html"><i class="fas fa-calculator"></i> Budget</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-    <!-- ========== MAIN CONTENT ========== -->
-    <main id="main-content" class="main-container">
-        <div class="container">
-            <div class="page-header">
-                <h1>Event Registration</h1>
-                <p class="lead">Complete the form below to register for your selected events</p>
+<nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <div class="container">
+        <ol>
+            <li><a href="../index.html">Home</a></li>
+            <li>Registration</li>
+        </ol>
+    </div>
+</nav>
+
+<main class="main-container">
+    <div class="container">
+        <h1>Event Registration</h1>
+        <p class="lead">Join us for our upcoming events.</p>
+
+        <form action="../scripts/register.php" method="POST" class="card registration-form">
+
+            <h2 class="section-title">Personal Information</h2>
+
+            <label>
+                Full Name
+                <input type="text" name="fullname" required>
+            </label>
+
+            <label>
+                Email Address
+                <input type="email" name="email" required>
+            </label>
+
+            <label>
+                Phone Number
+                <input type="tel" name="phone">
+            </label>
+
+            <h2 class="section-title">Event Selection</h2>
+
+            <label>
+                Choose Event
+                <select name="event" id="event-select" required>
+                    <option value="">-- Select an Event --</option>
+                    <option value="tech-conf">Annual Tech Conference 2025 ($199)</option>
+                    <option value="cultural-fest">Cultural Diversity Festival (Free)</option>
+                    <option value="career-fair">Spring Career Fair 2026 ($25)</option>
+                    <option value="ai-workshop">AI Workshop Series ($50)</option>
+                </select>
+            </label>
+
+            <label>
+                Dietary Requirements
+                <textarea name="dietary" rows="3"></textarea>
+            </label>
+
+            <div class="form-actions">
+                <button type="reset" class="btn btn-outline">Clear</button>
+                <button type="submit" class="btn btn-success">Register</button>
             </div>
+        </form>
+    </div>
+</main>
 
-            <div class="form-container">
-                <form action="thank.html" method="get" name="registrationForm" id="registrationForm" novalidate>
-                    <!-- Personal Information -->
-                    <fieldset class="fieldset">
-                        <legend class="legend">Personal Information</legend>
-                        
-                        <div class="form-group">
-                            <label for="fullName">
-                                Full Name <span class="required">*</span>
-                            </label>
-                            <input type="text" id="fullName" name="fullName" 
-                                   class="form-control" required minlength="3" maxlength="50" 
-                                   placeholder="Enter your full name" 
-                                   title="Enter your full name (3-50 characters)" 
-                                   autofocus autocomplete="name">
-                            <p class="help-text">Please enter your full legal name</p>
-                        </div>
+<footer class="site-footer">
+    <p>&copy; 2025 EduConnect. All rights reserved.</p>
+</footer>
 
-                        <div class="form-group">
-                            <label for="studentID">
-                                Student ID <span class="required">*</span>
-                            </label>
-                            <input type="text" id="studentID" name="studentID" 
-                                   class="form-control" required pattern="^\d{9}$"
-                                   placeholder="123456789" 
-                                   title="Exactly 9 digits (e.g., 123456789)">
-                            <p class="help-text">Your 9-digit student ID number</p>
-                        </div>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const eventId = params.get('event');
+    if (eventId) document.getElementById('event-select').value = eventId;
+</script>
 
-                        <div class="form-group">
-                            <label for="email">
-                                Email Address <span class="required">*</span>
-                            </label>
-                            <input type="email" id="email" name="email" 
-                                   class="form-control" required 
-                                   placeholder="student@example.com" 
-                                   title="Enter a valid email address" 
-                                   autocomplete="email">
-                        </div>
-
-                        <div class="grid grid-2" style="gap: 1rem;">
-                            <div class="form-group">
-                                <label for="password">
-                                    Password <span class="required">*</span>
-                                </label>
-                                <input type="password" id="password" name="password" 
-                                       class="form-control" required minlength="8" maxlength="20"
-                                       placeholder="Minimum 8 characters" 
-                                       title="Password must be 8-20 characters" 
-                                       autocomplete="new-password">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="confirmPassword">
-                                    Confirm Password <span class="required">*</span>
-                                </label>
-                                <input type="password" id="confirmPassword" name="confirmPassword" 
-                                       class="form-control" required minlength="8" maxlength="20"
-                                       placeholder="Re-enter your password" 
-                                       title="Must match password">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="dob">
-                                Date of Birth <span class="required">*</span>
-                            </label>
-                            <input type="date" id="dob" name="dob" 
-                                   class="form-control" required 
-                                   max="2007-12-05"
-                                   title="Must be at least 18 years old" 
-                                   autocomplete="bday">
-                            <p class="help-text">You must be at least 18 years old to register</p>
-                        </div>
-
-                        <div class="form-group">
-                            <fieldset>
-                                <legend>Gender <span class="required">*</span></legend>
-                                <div class="radio-group">
-                                    <label class="radio-option">
-                                        <input type="radio" name="gender" value="male" required>
-                                        Male
-                                    </label>
-                                    <label class="radio-option">
-                                        <input type="radio" name="gender" value="female" required>
-                                        Female
-                                    </label>
-                                    <label class="radio-option">
-                                        <input type="radio" name="gender" value="prefer_not_to_say" required>
-                                        Prefer not to say
-                                    </label>
-                                </div>
-                            </fieldset>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="profilePhoto">Profile Photo</label>
-                            <input type="file" id="profilePhoto" name="profilePhoto" 
-                                   class="form-control" accept="image/*"
-                                   title="Upload an image file (JPEG, PNG, etc.)">
-                            <p class="help-text">Accepted formats: JPG, PNG, GIF (Max 5MB)</p>
-                        </div>
-                    </fieldset>
-
-                    <!-- Academic Information -->
-                    <fieldset class="fieldset">
-                        <legend class="legend">Academic Information</legend>
-                        
-                        <div class="form-group">
-                            <fieldset>
-                                <legend>Current Degree Level <span class="required">*</span></legend>
-                                <div class="radio-group">
-                                    <label class="radio-option">
-                                        <input type="radio" name="degreeLevel" value="bachelors" checked required>
-                                        Bachelor's Degree
-                                    </label>
-                                    <label class="radio-option">
-                                        <input type="radio" name="degreeLevel" value="masters" required>
-                                        Master's Degree
-                                    </label>
-                                    <label class="radio-option">
-                                        <input type="radio" name="degreeLevel" value="phd" required>
-                                        PhD
-                                    </label>
-                                </div>
-                            </fieldset>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="major">Major/Department <span class="required">*</span></label>
-                            <select id="major" name="major" class="form-control select-control" required>
-                                <option value="">-- Select Your Major --</option>
-                                <optgroup label="Faculty of Engineering">
-                                    <option value="computer_science">Computer Science</option>
-                                    <option value="information_technology">Information Technology</option>
-                                    <option value="software_engineering">Software Engineering</option>
-                                    <option value="computer_engineering">Computer Engineering</option>
-                                </optgroup>
-                                <optgroup label="Faculty of Business">
-                                    <option value="marketing">Marketing</option>
-                                    <option value="finance">Finance</option>
-                                    <option value="management">Management</option>
-                                    <option value="accounting">Accounting</option>
-                                </optgroup>
-                                <optgroup label="Faculty of Science">
-                                    <option value="mathematics">Mathematics</option>
-                                    <option value="physics">Physics</option>
-                                    <option value="biology">Biology</option>
-                                    <option value="chemistry">Chemistry</option>
-                                </optgroup>
-                            </select>
-                        </div>
-
-                        <div class="grid grid-2" style="gap: 1rem;">
-                            <div class="form-group">
-                                <label for="semester">Current Semester <span class="required">*</span></label>
-                                <input type="number" id="semester" name="semester" 
-                                       class="form-control" required min="1" max="12"
-                                       placeholder="1-12" 
-                                       title="Enter a number between 1 and 12">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="gpa">Current GPA</label>
-                                <input type="number" id="gpa" name="gpa" 
-                                       class="form-control" min="0" max="4" step="0.01"
-                                       placeholder="0.00 - 4.00" 
-                                       title="Enter GPA between 0.00 and 4.00">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <fieldset>
-                                <legend>Previous Programming Experience</legend>
-                                <div class="checkbox-group">
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" name="experience" value="python">
-                                        Python
-                                    </label>
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" name="experience" value="java">
-                                        Java
-                                    </label>
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" name="experience" value="c++">
-                                        C++
-                                    </label>
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" name="experience" value="javascript">
-                                        JavaScript
-                                    </label>
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" name="experience" value="php">
-                                        PHP
-                                    </label>
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" name="experience" value="c#">
-                                        C#
-                                    </label>
-                                    <label class="checkbox-option">
-                                        <input type="checkbox" name="experience" value="none">
-                                        None
-                                    </label>
-                                </div>
-                            </fieldset>
-                        </div>
-                    </fieldset>
-
-                    <!-- Event Preferences -->
-                    <fieldset class="fieldset">
-                        <legend class="legend">Event Preferences</legend>
-                        
-                        <div class="form-group">
-                            <fieldset>
-                                <legend>Preferred Learning Mode <span class="required">*</span></legend>
-                                <div class="radio-group">
-                                    <label class="radio-option">
-                                        <input type="radio" name="learningMode" value="on-campus" required>
-                                        On-Campus
-                                    </label>
-                                    <label class="radio-option">
-                                        <input type="radio" name="learningMode" value="online" required>
-                                        Online
-                                    </label>
-                                    <label class="radio-option">
-                                        <input type="radio" name="learningMode" value="hybrid" required>
-                                        Hybrid/Mixed
-                                    </label>
-                                </div>
-                            </fieldset>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="categories">
-                                Event Categories of Interest <span class="required">*</span>
-                            </label>
-                            <select id="categories" name="categories[]" 
-                                    class="form-control select-control" multiple size="5" required>
-                                <option value="technology">Technology</option>
-                                <option value="cultural">Cultural</option>
-                                <option value="career">Career Development</option>
-                                <option value="workshop">Workshops</option>
-                                <option value="networking">Networking</option>
-                                <option value="sports">Sports</option>
-                                <option value="arts">Arts & Music</option>
-                                <option value="academic">Academic</option>
-                                <option value="community">Community Service</option>
-                                <option value="leadership">Leadership</option>
-                            </select>
-                            <p class="help-text">Select 1-3 categories (Hold Ctrl/Cmd for multiple)</p>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="schedule">Preferred Event Schedule <span class="required">*</span></label>
-                            <select id="schedule" name="schedule" class="form-control select-control" required>
-                                <option value="">-- Select Schedule --</option>
-                                <option value="morning">Morning (8:00 AM - 12:00 PM)</option>
-                                <option value="afternoon">Afternoon (12:00 PM - 4:00 PM)</option>
-                                <option value="evening">Evening (4:00 PM - 8:00 PM)</option>
-                                <option value="weekend">Weekend (Saturday & Sunday)</option>
-                                <option value="flexible">Flexible (Any Time)</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="primaryEvent">Primary Event Selection <span class="required">*</span></label>
-                            <select id="primaryEvent" name="primaryEvent" class="form-control select-control" required>
-                                <option value="">-- Select Primary Event --</option>
-                                <optgroup label="Technology Events">
-                                    <option value="tech-conf-2025">Tech Conference 2025</option>
-                                    <option value="ai-workshop">AI Workshop Series</option>
-                                    <option value="web-dev-bootcamp">Web Development Bootcamp</option>
-                                </optgroup>
-                                <optgroup label="Cultural Events">
-                                    <option value="cultural-fest">Cultural Diversity Festival</option>
-                                    <option value="art-exhibition">Art Exhibition</option>
-                                    <option value="music-concert">Music Concert</option>
-                                </optgroup>
-                                <optgroup label="Career Events">
-                                    <option value="career-fair">Spring Career Fair 2026</option>
-                                    <option value="resume-workshop">Resume Workshop</option>
-                                    <option value="interview-prep">Interview Preparation</option>
-                                </optgroup>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="alternativeEvents">Alternative Events</label>
-                            <select id="alternativeEvents" name="alternativeEvents[]" 
-                                    class="form-control select-control" multiple size="4">
-                                <option value="hackathon">24-Hour Hackathon</option>
-                                <option value="startup-pitch">Startup Pitch Competition</option>
-                                <option value="data-science">Data Science Workshop</option>
-                                <option value="cybersecurity">Cybersecurity Seminar</option>
-                                <option value="blockchain">Blockchain Workshop</option>
-                                <option value="game-dev">Game Development Workshop</option>
-                            </select>
-                            <p class="help-text">Select up to 3 alternative events</p>
-                        </div>
-                    </fieldset>
-
-                    <!-- Additional Information -->
-                    <fieldset class="fieldset">
-                        <legend class="legend">Additional Information</legend>
-                        
-                        <div class="form-group">
-                            <label for="howHeard">How did you hear about us? <span class="required">*</span></label>
-                            <select id="howHeard" name="howHeard" class="form-control select-control" required>
-                                <option value="">-- Please Select --</option>
-                                <option value="search-engine">Search Engine (Google, Bing)</option>
-                                <option value="social-media">Social Media</option>
-                                <option value="friend-colleague">Friend or Colleague</option>
-                                <option value="university-announcement">University Announcement</option>
-                                <option value="online-advertisement">Online Advertisement</option>
-                                <option value="email-newsletter">Email Newsletter</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="specialRequirements">Special Requirements or Accessibility Needs</label>
-                            <textarea id="specialRequirements" name="specialRequirements" 
-                                      class="form-control textarea-control" rows="4" 
-                                      maxlength="500" 
-                                      placeholder="Describe any special requirements or accessibility needs (e.g., wheelchair access, dietary restrictions, etc.)"
-                                      title="Maximum 500 characters"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="expectations">Your Expectations and Goals</label>
-                            <textarea id="expectations" name="expectations" 
-                                      class="form-control textarea-control" rows="5" 
-                                      maxlength="500" 
-                                      placeholder="What do you hope to achieve by attending these events? What are your learning or networking goals?"
-                                      title="Maximum 500 characters"></textarea>
-                        </div>
-                    </fieldset>
-
-                    <!-- Terms and Conditions -->
-                    <fieldset class="fieldset">
-                        <legend class="legend">Terms and Conditions</legend>
-                        
-                        <div class="form-group">
-                            <label class="checkbox-option">
-                                <input type="checkbox" name="termsAgreement" required>
-                                I agree to the <a href="#" target="_blank">Terms and Conditions</a> <span class="required">*</span>
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="checkbox-option">
-                                <input type="checkbox" name="privacyPolicy" required>
-                                I have read and accept the <a href="#" target="_blank">Privacy Policy</a> <span class="required">*</span>
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="checkbox-option">
-                                <input type="checkbox" name="newsletter">
-                                Subscribe to our newsletter for event updates and special offers
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="checkbox-option">
-                                <input type="checkbox" name="marketing">
-                                I agree to receive marketing communications via email
-                            </label>
-                        </div>
-                    </fieldset>
-
-                    <!-- Hidden Fields -->
-                    <input type="hidden" name="formVersion" value="1.0">
-                    <input type="hidden" id="submissionDate" name="submissionDate">
-                    <input type="hidden" id="userAgent" name="userAgent">
-
-                    <!-- Form Actions -->
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> Submit Registration
-                        </button>
-                        <button type="reset" class="btn btn-secondary">
-                            <i class="fas fa-redo"></i> Clear Form
-                        </button>
-                        <button type="button" id="saveDraftBtn" class="btn btn-outline">
-                            <i class="fas fa-save"></i> Save Draft
-                        </button>
-                        <a href="events.html" class="btn">
-                            <i class="fas fa-arrow-left"></i> Back to Events
-                        </a>
-                    </div>
-
-                    <div class="mt-3 text-center">
-                        <p class="text-muted">
-                            <i class="fas fa-lock"></i> Your information is secure and encrypted
-                        </p>
-                        <p class="text-muted">
-                            <small>Fields marked with <span class="required">*</span> are required</small>
-                        </p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </main>
-    <!-- ========== END MAIN CONTENT ========== -->
-
-    <!-- ========== FOOTER SECTION ========== -->
-    <!-- Same footer as index.html -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>EventsX</h3>
-                    <p>Your ultimate event planning platform. Discover, register, and manage events with ease.</p>
-                    <div class="footer-social">
-                        <a href="https://www.facebook.com/EventsXOfficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://twitter.com/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/company/eventsx" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://www.instagram.com/eventsxofficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://www.youtube.com/channel/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events Catalog</a></li>
-                        <li><a href="registration.html"><i class="fas fa-chevron-right"></i> Registration</a></li>
-                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <address class="footer-contact">
-                        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:info@eventsx-gu.edu">info@eventsx-gu.edu</a></p>
-                        <p><i class="fas fa-phone"></i> Phone: +20 15888</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Address: Galala University, Suez, Egypt</p>
-                        <p><i class="fas fa-clock"></i> Office Hours: Sun-Wed, 9AM-4PM</p>
-                    </address>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Help Center</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQs</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cookie Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; <span class="current-year">2025</span> EventsX. All rights reserved.</p>
-                <p>Last updated: <time datetime="2025-12-05">December 5, 2025</time></p>
-                <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a> | 
-                    <a href="#">Terms of Service</a> | 
-                    <a href="#">Cookie Policy</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="scripts/main.js"></script>
 </body>
 </html>
