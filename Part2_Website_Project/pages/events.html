@@ -5,480 +5,111 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description"
-            content="Browse upcoming events on EventsX. Filter by category, date, location, and more. - EventsX">
+            content="Browse and filter upcoming events and workshops at EduConnect by category, location, and date.">
         <meta name="keywords"
-            content="events catalog, upcoming events, event registration, conferences, workshops, EventsX">
-        <meta name="Saga Taha" content="223104728">
+            content="events, workshops, seminars, education, EduConnect, Galala University">
+        <meta name="author" content="saga taha bedeer">
         <title>Events - EduConnect</title>
+        <link rel="stylesheet" href="./css/style.css">
+
     </head>
 
     <body>
 
         <!-- ========== HEADER SECTION ========== -->
+        <!-- CSE211 Course Project: Web Application Project -->
         <header>
-            <div>
-                <div>
-                    <div>
-                        <img src="../images/logo.png" alt="EventsX Logo"
-                            width="150" height="150">
+            <div class="header-content">
+                <figure>
+                    <img src="../images/logo.png" alt="Xevents Logo"
+                        width="150" height="150">
+                </figure>
 
-                    </div>
-                    <nav aria-label="Primary Navigation">
-                        <ul>
-                            <li><a href="../index.html">Home</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="events.html" aria-current="page">Events
-                                    Catalog</a></li>
-                            <li><a
-                                    href="registration.html">Registration</a></li>
-                            <li><a href="budget-calculator.html">Budget
-                                    Calculator</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a
-                                    href="student-dashboard.html">Dashboard</a></li>
-                            <li><a href="https://www.gu.edu.eg" target="_blank"
-                                    rel="noopener noreferrer">Galala
-                                    University</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                <nav id="main-navigation" role="navigation"
+                    aria-label="Primary Navigation">
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html" aria-current="page"> Events
+                                Catalog</a></li>
+                        <li><a href="student-dashboard.html">Student
+                                Dashboard</a></li>
+                        <li><a href="registration.html">Registration</a></li>
+                        <li><a href="contact.html">Contact Me</a></li>
+                        <li>
+                            <a href="https://www.gu.edu.eg" target="_blank"
+                                rel="noopener noreferrer">
+                                Galala University
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </header>
         <!-- ========== END HEADER SECTION ========== -->
 
         <!-- ========== BREADCRUMB NAVIGATION ========== -->
-        <nav aria-label="Breadcrumb">
+        <nav aria-label="breadcrumb" class="breadcrumb">
             <ol>
                 <li><a href="../index.html">Home</a></li>
-                <li><span>Events </span></li>
+                <li aria-current="page">Events catalog</li>
             </ol>
         </nav>
         <!-- ========== END BREADCRUMB NAVIGATION ========== -->
 
         <!-- ========== MAIN CONTENT ========== -->
         <main>
-            <!-- Search and Filter -->
-            <section>
-                <h2>Find Your Next Event</h2>
-                <form>
-                    <label for="search">Search events...</label>
-                    <input type="text" id="search" name="search"
-                        placeholder="Search events...">
+            <h1>Events</h1>
 
-                    <label for="category">Categories</label>
+            <!-- Filter Section -->
+            <section aria-labelledby="filter-heading">
+                <h2 id="filter-heading">Find Your Next Event</h2>
+
+                <form id="filter-form" method="get" action="events.html">
+                    <label for="category">Category</label>
                     <select id="category" name="category">
-                        <option value="all">All Categories</option>
-                        <option value="Music">Music</option>
-                        <option value="Food">Food</option>
-                        <option value="Culture">Culture</option>
-                        <option value="Leisure">Leisure</option>
-                        <option value="Nightlife">Nightlife</option>
-                        <option value="Business">Business</option>
-
+                        <option value>All Categories</option>
+                        <!-- Options will be populated dynamically via JavaScript from backend -->
                     </select>
 
-                    <label for="city">Cities</label>
+                    <label for="city">Location (City)</label>
                     <select id="city" name="city">
-                        <option value="all">All Cities</option>
-                        <option value="Seattle">Seattle</option>
-                        <option value="Ottawa">Ottawa</option>
-                        <option value="Lisbon">Lisbon</option>
-                        <option value="London">London</option>
-                        <option value="Zürich">Zürich</option>
-                        <option value="Amsterdam">Amsterdam</option>
-                        <option value="Berlin">Berlin</option>
-                        <option value="Dublin">Dublin</option>
-                        <option value="Paris">Paris</option>
-                        <option value="Barcelona">Barcelona</option>
-                        <option value="Rome">Rome</option>
-                        <option value="Milano">Milano</option>
-                        <option value="San Francisco">San Francisco</option>
-                        <option value="Las Vegas">Las Vegas</option>
-                        <option value="Toronto">Toronto</option>
+                        <option value>All Locations</option>
+                        <!-- Options will be populated dynamically via JavaScript from backend -->
                     </select>
 
-                    <label for="price">Prices</label>
-                    <select id="price" name="price">
-                        <option value="all">All Prices</option>
-                        <option value="0-50">$0 - $50</option>
-                        <option value="51-100">$51 - $100</option>
-                        <option value="101-200">$101 - $200</option>
-                        <option value="201-500">$201 - $500</option>
-                        <option value="501-1000">$501 - $1000</option>
-                        <option value="1000+">$1000+</option>
-                    </select>
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" value>
 
-                    <label for="date">mm/dd/yyyy</label>
-                    <input type="date" id="date" name="date">
-
-                    <input type="submit" value="Apply Filters">
+                    <button type="submit">Apply Filters</button>
+                    <button type="reset" id="reset-filters">Clear
+                        Filters</button>
                 </form>
             </section>
-            <!-- Events Table -->
-            <section>
-                <h2>Upcoming Events</h2>
-                <table border="1" cellpadding="5" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Event</th>
-                            <th>Category</th>
-                            <th>Date & Time</th>
-                            <th>City</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th>Image</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Event 1 -->
-                        <tr>
-                            <td>Salt & Pepper Supper Club</td>
-                            <td>Food</td>
-                            <td>Sat, Jan 3, 2026 | 10:00 PM</td>
-                            <td>London</td>
-                            <td>$65</td>
-                            <td>Unique dining experience with gourmet
-                                dishes.</td>
-                            <td><figure><img
-                                        src="../images/event1_salt_pepper_supper_club.jpeg"
-                                        alt="Salt & Pepper Supper Club"
-                                        width="120" height="90"><figcaption>Salt
-                                        & Pepper Supper
-                                        Club</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 2 -->
-                        <tr>
-                            <td>Spiritus Natalis</td>
-                            <td>Music / Culture</td>
-                            <td>Thu, Jan 1, 2026 | 9:00 PM</td>
-                            <td>Porto</td>
-                            <td>$70</td>
-                            <td>Christmas music concert at Igreja e Torre dos
-                                Clérigos.</td>
-                            <td><figure><img
-                                        src="../images/event2_spiritus_natalis.jpeg"
-                                        alt="Spiritus Natalis"
-                                        width="120"
-                                        height="90"><figcaption>Spiritus
-                                        Natalis</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 3 -->
-                        <tr>
-                            <td>Carrossel Veneziano</td>
-                            <td>Leisure</td>
-                            <td>Thu, Jan 1, 2026 | 12:00 AM</td>
-                            <td>Cascais</td>
-                            <td>$40</td>
-                            <td>Enjoy a traditional Venetian carousel at the
-                                bay.</td>
-                            <td><figure><img
-                                        src="../images/event3_carrossel_veneziano.jpeg"
-                                        alt="Carrossel Veneziano" width="120"
-                                        height="90"><figcaption>Carrossel
-                                        Veneziano</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 4 -->
-                        <tr>
-                            <td>Diverlândia</td>
-                            <td>Business</td>
-                            <td>Thu, Jan 1, 2026 | 3:00 PM</td>
-                            <td>Lisbon</td>
-                            <td>$150</td>
-                            <td>International fair showcasing business and
-                                innovation.</td>
-                            <td><figure><img
-                                        src="../images/event4_Diverlândia.jpg"
-                                        alt="Diverlândia"
-                                        width="120"
-                                        height="90"><figcaption>Diverlândia</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 5 -->
-                        <tr>
-                            <td>Carmen Miranda | Teatro Politeama</td>
-                            <td>Culture</td>
-                            <td>Thu, Jan 1, 2026 | 9:00 PM</td>
-                            <td>Lisbon</td>
-                            <td>$95</td>
-                            <td>Live theater performance celebrating Carmen
-                                Miranda.</td>
-                            <td><figure><img
-                                        src="../images/event5_carmen_miranda.jpg"
-                                        alt="Carmen Miranda"
-                                        width="120"
-                                        height="90"><figcaption>Carmen
-                                        Miranda</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 6 -->
-                        <tr>
-                            <td>Jonas & Lander | Jardins do Bombarda</td>
-                            <td>Music</td>
-                            <td>Wed, Dec 31, 2025 | 12:00 AM</td>
-                            <td>Lisbon</td>
-                            <td>$120</td>
-                            <td>New Year music celebration in Lisbon.</td>
-                            <td><figure><img
-                                        src="../images/event6_jonas_lander.jpg"
-                                        alt="Jonas & Lander"
-                                        width="120"
-                                        height="90"><figcaption>Jonas &
-                                        Lander</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 7 -->
-                        <tr>
-                            <td>Ano Novo no Lux | Lux Frágil</td>
-                            <td>Leisure</td>
-                            <td>Wed, Dec 31, 2025 | 12:00 AM</td>
-                            <td>Lisbon</td>
-                            <td>$130</td>
-                            <td>New Year party with music and drinks.</td>
-                            <td><figure><img
-                                        src="../images/event7_ano_novo_no_lux.jpeg"
-                                        alt="Ano Novo no Lux"
-                                        width="120" height="90"><figcaption>Ano
-                                        Novo no Lux</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 8 -->
-                        <tr>
-                            <td>The Great Mona | Mona Verde</td>
-                            <td>Leisure</td>
-                            <td>Thu, Jan 1, 2026 | 8:00 PM</td>
-                            <td>Lisbon</td>
-                            <td>$75</td>
-                            <td>Evening leisure event with art and music.</td>
-                            <td><figure><img
-                                        src="../images/event8_the_great_mona.jpeg"
-                                        alt="The Great Mona"
-                                        width="120" height="90"><figcaption>The
-                                        Great Mona</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 9 -->
-                        <tr>
-                            <td>Concerto de Ano Novo | Centro Cultural de
-                                Belém</td>
-                            <td>Music</td>
-                            <td>Thu, Jan 1, 2026 | 11:00 AM</td>
-                            <td>Lisbon</td>
-                            <td>$180</td>
-                            <td>New Year classical music concert.</td>
-                            <td><figure><img
-                                        src="../images/event9_concerto_de_ano_novo.jpeg"
-                                        alt="Concerto de Ano Novo"
-                                        width="120"
-                                        height="90"><figcaption>Concerto
-                                        de Ano Novo</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 10 -->
-                        <tr>
-                            <td>Queen Sheeks Jamaican Pop-Up Restaurant</td>
-                            <td>Food</td>
-                            <td>Fri, Jan 2, 2026 | 12:00 PM</td>
-                            <td>London</td>
-                            <td>$65</td>
-                            <td>Jamaican cuisine pop-up restaurant.</td>
-                            <td><figure><img
-                                        src="../images/event10_queen_sheeks_jamaican_popup.avif"
-                                        alt="Queen Sheeks"
-                                        width="120"
-                                        height="90"><figcaption>Queen
-                                        Sheeks</figcaption></figure></td>
-                        </tr>
 
-                        <!-- Event 11 -->
-                        <tr>
-                            <td>Diverlândia 2</td>
-                            <td>Business</td>
-                            <td>Tue, Jan 6, 2026 | 2:00 PM</td>
-                            <td>Lisbon</td>
-                            <td>$220</td>
-                            <td>Business expo and networking opportunities.</td>
-                            <td><figure><img
-                                        src="../images/event11_diverlandia_2.jpg"
-                                        alt="Diverlândia 2"
-                                        width="120"
-                                        height="90"><figcaption>Diverlândia
-                                        2</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 12 -->
-                        <tr>
-                            <td>Carmen Miranda 2</td>
-                            <td>Culture</td>
-                            <td>Wed, Jan 7, 2026 | 7:00 PM</td>
-                            <td>Lisbon</td>
-                            <td>$90</td>
-                            <td>Evening theater performance.</td>
-                            <td><figure><img
-                                        src="../images/event12_carmen_miranda_2.jpg"
-                                        alt="Carmen Miranda 2"
-                                        width="120"
-                                        height="90"><figcaption>Carmen
-                                        Miranda 2</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 13 -->
-                        <tr>
-                            <td>Jonas & Lander 2 </td>
-                            <td>Music</td>
-                            <td>Thu, Jan 8, 2026 | 9:00 PM</td>
-                            <td>Lisbon</td>
-                            <td>$100</td>
-                            <td>Music performance in Lisbon.</td>
-                            <td><figure><img
-                                        src="../images/event13_Jonas_Lander.jpg"
-                                        alt="Jonas & Lander 2"
-                                        width="120"
-                                        height="90"><figcaption>Jonas
-                                        & Lander 2</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 14 -->
-                        <tr>
-                            <td>Ano Novo no Lux 2</td>
-                            <td>Leisure</td>
-                            <td>Fri, Jan 9, 2026 | 11:00 PM</td>
-                            <td>Lisbon</td>
-                            <td>$150</td>
-                            <td>Night party with drinks and music.</td>
-                            <td><figure><img
-                                        src="../images/event14_ano_novo_no_Lux2.jpeg"
-                                        alt="Ano Novo no Lux 2"
-                                        width="120" height="90"><figcaption>Ano
-                                        Novo no Lux 2</figcaption></figure></td>
-                        </tr>
+            <!-- Events Listing Section -->
+            <section aria-labelledby="events-heading">
+                <h2 id="events-heading">Upcoming Events</h2>
 
-                        <!-- Event 15 -->
-                        <tr>
-                            <td>Spanish Beginner Course</td>
-                            <td>Food / Business</td>
-                            <td>Mon, Jan 19, 2026 | 7:30 PM</td>
-                            <td>London</td>
-                            <td>$200</td>
-                            <td>Learn Spanish in central London, Jan-Apr
-                                2026.</td>
-                            <td><figure><img
-                                        src="../images/event15_spanish_beginner_course.png"
-                                        alt="Spanish Beginner Course"
-                                        width="120"
-                                        height="90"><figcaption>Spanish
-                                        Beginner
-                                        Course</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 16 -->
-                        <tr>
-                            <td>Italian Beginner Course A1</td>
-                            <td>Food / Business</td>
-                            <td>Tue, Jan 20, 2026 | 6:00 PM</td>
-                            <td>London</td>
-                            <td>$220</td>
-                            <td>Learn Italian in central London, Jan-Apr
-                                2026.</td>
-                            <td><figure><img
-                                        src="../images/event16_italian_beginner_course_a1.jpg"
-                                        alt="Italian Beginner Course"
-                                        width="120"
-                                        height="90"><figcaption>Italian
-                                        Beginner
-                                        Course</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 17 -->
-                        <tr>
-                            <td>The Gladwin Brothers' Burns Night</td>
-                            <td>Food / Nightlife</td>
-                            <td>Sat, Jan 24, 2026 | 8:00 PM</td>
-                            <td>London</td>
-                            <td>$75</td>
-                            <td>Traditional Burns Night celebration with food
-                                and music.</td>
-                            <td><figure><img
-                                        src="../images/event17_burns_night.webp"
-                                        alt="Burns Night"
-                                        width="120"
-                                        height="90"><figcaption>Burns
-                                        Night</figcaption></figure></td>
-                        </tr>
-
-                        <!-- Event 18 -->
-                        <tr>
-                            <td>The Ultimate Bottomless Afternoon Tea</td>
-                            <td>Food</td>
-                            <td>Sat, Jan 31, 2026 | 5:00 PM</td>
-                            <td>London</td>
-                            <td>$95</td>
-                            <td>Afternoon tea with unlimited servings and
-                                pastries.</td>
-                            <td><figure><img
-                                        src="../images/event18_bottomless_afternoon_tea.jpg"
-                                        alt="Bottomless Tea"
-                                        width="120"
-                                        height="90"><figcaption>Bottomless
-                                        Tea</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 19 -->
-                        <tr>
-                            <td>DOUGH-IT YOURSELF Pizza Making Class</td>
-                            <td>Food</td>
-                            <td>Fri, Feb 13, 2026 | 9:00 PM</td>
-                            <td>London</td>
-                            <td>$120</td>
-                            <td>Valentine special pizza masterclass.</td>
-                            <td><figure><img
-                                        src="../images/event19_pizza_making_class.jpeg"
-                                        alt="Pizza Making Class"
-                                        width="120"
-                                        height="90"><figcaption>Pizza
-                                        Making Class</figcaption></figure></td>
-                        </tr>
-                        <!-- Event 20 -->
-                        <tr>
-                            <td>Plant Based Food Fest London</td>
-                            <td>Food / Nightlife</td>
-                            <td>Sat, Feb 14, 2026 | 10:00 AM</td>
-                            <td>London</td>
-                            <td>$180</td>
-                            <td>Festival celebrating plant-based cuisine and
-                                culture.</td>
-                            <td><figure><img
-                                        src=".../images/event20_plant_based_food_fest.jpeg"
-                                        alt="Plant Based Food Fest"
-                                        width="120"
-                                        height="90"><figcaption>Plant
-                                        Based Food
-                                        Fest</figcaption></figure></td>
-                        </tr>
-
-                        <!-- Event 21-->
-                        <tr>
-                            <td>Shanghai Lounge: Cocktail Masterclass</td>
-                            <td>Food / Nightlife</td>
-                            <td>Mon, Mar 23, 2026 | 8:00 PM</td>
-                            <td>London</td>
-                            <td>$160</td>
-                            <td>Cocktail making masterclass with expert
-                                bartenders.</td>
-                            <td><figure><img
-                                        src="../images/event21_shanghai_lounge.jpeg"
-                                        alt="Shanghai Lounge"
-                                        width="120"
-                                        height="90"><figcaption>Shanghai
-                                        Lounge</figcaption></figure></td>
-                        </tr>
-
-                    </tbody>
-                </table>
+                <ul id="events-list" aria-live="polite">
+                    <!-- Each event item will be rendered here dynamically as <li> by JavaScript from backend data -->
+                </ul>
             </section>
         </main>
+        <!-- ========== END MAIN CONTENT ========== -->
 
         <!-- ========== FOOTER SECTION ========== -->
         <footer>
             <div class="footer-content">
 
-                <!-- Footer About -->
-                <section>
-                    <h3>EventsX</h3>
-                    <p>Your ultimate event planning platform.</p>
+                <section aria-labelledby="Xevent-heading">
+                    <h3 id="Xevent-heading">Xevent</h3>
+                    <p>connect,discover,and experience unforgettable events and
+                        workshops with Xevent.</p>
                 </section>
 
-                <!-- Footer Links -->
-                <section>
-                    <h4>Quick Links</h4>
+                <section aria-labelledby="quicklinks-heading">
+                    <h4 id="quicklinks-heading">Quick Links</h4>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -487,9 +118,8 @@
                     </ul>
                 </section>
 
-                <!-- Footer Social Media -->
-                <section>
-                    <h4>Follow Us</h4>
+                <section aria-labelledby="follow-heading">
+                    <h4 id="follow-heading">Follow Us</h4>
                     <ul>
                         <li><a href="#" target="_blank"
                                 rel="noopener">LinkedIn</a></li>
@@ -500,27 +130,35 @@
                     </ul>
                 </section>
 
-                <!-- Footer Contact -->
-                <section>
-                    <h4>Contact</h4>
+                <section aria-labelledby="contact-heading">
+                    <h4 id="contact-heading">Contact</h4>
                     <address>
-                        <a href="mailto:info@eventsx-gu.edu" rel="noopener">
-                            info@eventsx-gu.edu
+                        <a href="mailto:info@educonnect.com" rel="noopener">
+                            info@educonnect.com
                         </a>
                     </address>
+                </section>
+                <section aria-labelledby="services-heading">
+                    <h4 id="services-heading">Services</h4>
+                    <ul>
+                        <li><a href="events.html">Browse Events</a></li>
+                        <li><a href="registration.html">Event
+                                Registration</a></li>
+                        <li><a href="dashboard.html">Student Dashboard</a></li>
+                    </ul>
                 </section>
 
             </div>
 
-            <!-- Footer Copyright -->
             <p>© 2025 EduConnect. All rights reserved.</p>
             <p>
                 Last Updated:
-                <time datetime="2025-12-05">December 5, 2025</time>
+                <time datetime="2026-01-02">January 2, 2026</time>
             </p>
         </footer>
-        <!-- ========== END FOOTER ========== -->
+        <!-- ========== END FOOTER SECTION ========== -->
 
+        <script src="../js/events.js"></script>
     </body>
 
 </html>
