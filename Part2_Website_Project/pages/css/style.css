@@ -140,6 +140,25 @@ em {
     border: 0;
 }
 
+/* Skip link (shown on keyboard focus) */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    background: #2c3e50;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 9999;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 10px;
+}
+
 /* ========== HEADER & NAVIGATION ========== */
 .site-header {
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
@@ -148,6 +167,14 @@ em {
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: transform 0.25s ease;
+    will-change: transform;
+}
+
+@media (min-width: 993px) {
+    .site-header.header-hidden {
+        transform: translateY(-110%);
+    }
 }
 
 .header-wrapper {
@@ -194,6 +221,30 @@ em {
     background: rgba(52, 73, 94, 0.95);
     border-radius: 10px;
     padding: 0.75rem 1.5rem;
+}
+
+/* Mobile/tablet navigation toggle (progressive enhancement: only active when JS is available) */
+.btn.nav-toggle {
+    display: none;
+    align-self: flex-end;
+    margin-left: auto;
+    gap: 0.5rem;
+}
+
+@media (max-width: 992px) {
+    html.js .btn.nav-toggle {
+        display: inline-flex;
+    }
+
+    html.js .primary-nav {
+        display: none;
+    }
+
+    html.js .primary-nav.is-open {
+        display: block;
+        max-height: 60vh;
+        overflow: auto;
+    }
 }
 
 .nav-list {
@@ -1380,7 +1431,7 @@ article.card {
 .text-white h1, .text-white h2, .text-white h3,
 .text-white h4, .text-white h5, .text-white h6,
 .text-white strong,
-.text-white a {
+.text-white a:not(.btn) {
   color: inherit;
 }
 .text-primary { color: #3498db; }
@@ -1430,6 +1481,29 @@ article.card {
     html {
         font-size: 15px;
     }
+
+    /* Make header more compact on tablets/phones */
+    .header-wrapper {
+        gap: 0.75rem;
+        padding: 0.75rem 0;
+    }
+
+    .site-logo {
+        width: 70px;
+        height: 70px;
+    }
+
+    .site-branding h1 {
+        font-size: 2rem;
+    }
+
+    .primary-nav {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .nav-link {
+        padding: 0.5rem 0.75rem;
+    }
     
     .container {
         padding: 0 1rem;
@@ -1459,6 +1533,11 @@ article.card {
     .btn {
         width: 100%;
     }
+
+    /* Keep the nav toggle as a compact button */
+    .nav-toggle.btn {
+        width: auto;
+    }
     
     .table-responsive {
         margin: 1rem 0;
@@ -1479,6 +1558,40 @@ article.card {
     .grid-2 > * {
         flex: 0 0 100%;
     }
+
+    /* Extra-compact header on small phones */
+    .header-wrapper {
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+    }
+
+    .site-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .site-branding .tagline {
+        display: none;
+    }
+
+    .breadcrumb-nav {
+        padding: 0.75rem 1rem;
+    }
+
+    .primary-nav {
+        padding: 0.5rem;
+    }
+
+    .nav-link {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .nav-link,
+    .breadcrumb-link,
+    .breadcrumb-current {
+        font-size: 0.95rem;
+    }
+
     .header-wrapper {
         text-align: center;
     }
