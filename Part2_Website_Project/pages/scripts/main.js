@@ -45,32 +45,9 @@ function initAccessibility() {
 function addSkipToContentLink() {
     const skipLink = document.createElement('a');
     skipLink.href = '#main-content';
-    skipLink.className = 'skip-link sr-only';
+    skipLink.className = 'skip-link';
     skipLink.textContent = 'Skip to main content';
     skipLink.setAttribute('aria-label', 'Skip to main content');
-    
-    // Add styles dynamically
-    skipLink.style.cssText = `
-        position: absolute;
-        top: -40px;
-        left: 10px;
-        background: #2c3e50;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 4px;
-        text-decoration: none;
-        font-weight: 600;
-        z-index: 9999;
-        transition: top 0.3s ease;
-    `;
-    
-    skipLink.addEventListener('focus', function() {
-        this.style.top = '10px';
-    });
-    
-    skipLink.addEventListener('blur', function() {
-        this.style.top = '-40px';
-    });
     
     document.body.insertBefore(skipLink, document.body.firstChild);
     
@@ -97,9 +74,9 @@ function enhanceFocusStyles() {
 function enhanceAriaLabels() {
     // Add aria-live regions for dynamic content
     const liveRegion = document.createElement('div');
-    liveRole.setAttribute('aria-live', 'polite');
-    liveRole.setAttribute('aria-atomic', 'true');
-    liveRole.className = 'sr-only';
+    liveRegion.setAttribute('aria-live', 'polite');
+    liveRegion.setAttribute('aria-atomic', 'true');
+    liveRegion.className = 'sr-only';
     document.body.appendChild(liveRegion);
     
     // Label all interactive elements
@@ -124,6 +101,9 @@ function initKeyboardNavigation() {
 function initNavigation() {
     // Mobile navigation toggle
     initMobileMenu();
+
+    // Desktop header hide/show on scroll
+    initHeaderScrollBehavior();
     
     // Smooth scrolling for anchor links
     initSmoothScrolling();
@@ -135,17 +115,114 @@ function initNavigation() {
     enhanceBreadcrumbs();
 }
 
+function initHeaderScrollBehavior() {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    const desktopQuery = window.matchMedia('(min-width: 993px)');
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const update = () => {
+        ticking = false;
+
+        if (!desktopQuery.matches) {
+            header.classList.remove('header-hidden');
+            lastScrollY = window.scrollY;
+            return;
+        }
+
+        const currentScrollY = window.scrollY;
+
+        // Always show at the very top
+        if (currentScrollY <= 0) {
+            header.classList.remove('header-hidden');
+            lastScrollY = currentScrollY;
+            return;
+        }
+
+        // Ignore tiny scroll jitter
+        const delta = currentScrollY - lastScrollY;
+        if (Math.abs(delta) < 8) return;
+
+        if (delta > 0) {
+            // Scrolling down
+            header.classList.add('header-hidden');
+        } else {
+            // Scrolling up
+            header.classList.remove('header-hidden');
+        }
+
+        lastScrollY = currentScrollY;
+    };
+
+    const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(update);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // If viewport crosses breakpoint, reset state
+    if (typeof desktopQuery.addEventListener === 'function') {
+        desktopQuery.addEventListener('change', () => {
+            header.classList.remove('header-hidden');
+            lastScrollY = window.scrollY;
+        });
+    }
+}
+
 function initMobileMenu() {
     const nav = document.querySelector('.primary-nav');
     if (!nav) return;
 
-    // Bring navigation back to the original always-visible behavior.
-    // If a burger toggle was injected previously, remove it.
-    const existingToggle = document.querySelector('.nav-toggle');
-    if (existingToggle) {
-        existingToggle.remove();
+    // Enable progressive-enhancement styles (mobile nav collapses only when JS is available)
+    document.documentElement.classList.add('js');
+
+    const navId = nav.id || 'main-navigation';
+    if (!nav.id) nav.id = navId;
+
+    let toggle = document.querySelector('.nav-toggle');
+    if (!toggle) {
+        toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'nav-toggle btn btn-light btn-sm';
+        toggle.setAttribute('aria-controls', navId);
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.innerHTML = '<i class="fa-solid fa-list" aria-hidden="true"></i><span class="sr-only">Toggle navigation</span>';
+
+        // Insert toggle button right before the nav
+        nav.parentNode.insertBefore(toggle, nav);
     }
+
+    const syncExpanded = () => {
+        toggle.setAttribute('aria-expanded', nav.classList.contains('is-open') ? 'true' : 'false');
+    };
+
+    // Avoid double-binding if init runs more than once
+    if (!toggle.dataset.bound) {
+        toggle.addEventListener('click', () => {
+            nav.classList.toggle('is-open');
+            syncExpanded();
+        });
+
+        // Close menu after selecting an item on small screens
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.matchMedia('(max-width: 992px)').matches) {
+                    nav.classList.remove('is-open');
+                    syncExpanded();
+                }
+            });
+        });
+
+        toggle.dataset.bound = 'true';
+    }
+
+    // Ensure correct initial state
     nav.classList.remove('is-open');
+    syncExpanded();
 }
 
 function initSmoothScrolling() {
