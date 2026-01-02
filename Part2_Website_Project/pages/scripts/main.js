@@ -138,74 +138,14 @@ function initNavigation() {
 function initMobileMenu() {
     const nav = document.querySelector('.primary-nav');
     if (!nav) return;
-    
-    // Create mobile menu toggle button
-    const menuToggle = document.createElement('button');
-    menuToggle.className = 'mobile-menu-toggle';
-    menuToggle.setAttribute('aria-label', 'Toggle navigation menu');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.innerHTML = '<span></span><span></span><span></span>';
-    
-    // Style the toggle button
-    menuToggle.style.cssText = `
-        display: none;
-        background: none;
-        border: none;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        padding: 8px;
-        position: relative;
-    `;
-    
-    menuToggle.querySelectorAll('span').forEach(span => {
-        span.style.cssText = `
-            display: block;
-            width: 24px;
-            height: 3px;
-            background: white;
-            margin: 4px 0;
-            transition: 0.3s;
-            border-radius: 2px;
-        `;
-    });
-    
-    // Insert before navigation
-    nav.parentNode.insertBefore(menuToggle, nav);
-    
-    // Toggle menu on click
-    menuToggle.addEventListener('click', function() {
-        const isExpanded = this.getAttribute('aria-expanded') === 'true';
-        this.setAttribute('aria-expanded', !isExpanded);
-        nav.classList.toggle('mobile-open');
-        
-        // Animate hamburger to X
-        const spans = this.querySelectorAll('span');
-        if (!isExpanded) {
-            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-        } else {
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        }
-    });
-    
-    // Show/hide based on screen width
-    function handleResize() {
-        if (window.innerWidth < 992) {
-            menuToggle.style.display = 'block';
-            nav.classList.remove('mobile-open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-        } else {
-            menuToggle.style.display = 'none';
-            nav.classList.remove('mobile-open');
-        }
+
+    // Bring navigation back to the original always-visible behavior.
+    // If a burger toggle was injected previously, remove it.
+    const existingToggle = document.querySelector('.nav-toggle');
+    if (existingToggle) {
+        existingToggle.remove();
     }
-    
-    handleResize();
-    window.addEventListener('resize', debounce(handleResize, 250));
+    nav.classList.remove('is-open');
 }
 
 function initSmoothScrolling() {
