@@ -3,6 +3,19 @@
  * Refactored to ES6 Class Structure
  */
 
+const ADMIN_USERNAME = 'admin';
+const ADMIN_PASSWORD = 'admin123';
+const EXTRA_EVENTS_STORAGE_KEY = 'eventsx_extra_events';
+
+function loadExtraEvents() {
+    try {
+        const parsed = JSON.parse(localStorage.getItem(EXTRA_EVENTS_STORAGE_KEY));
+        return Array.isArray(parsed) ? parsed : [];
+    } catch {
+        return [];
+    }
+}
+
 class AuthManager {
     constructor() {
         this.authContainer = document.querySelector('.auth-container');
@@ -40,12 +53,25 @@ class AuthManager {
                     return;
                 }
 
-                const user = {
-                    username: usernameOrEmail.includes('@') ? usernameOrEmail.split('@')[0] : usernameOrEmail,
-                    email: usernameOrEmail.includes('@') ? usernameOrEmail : '',
-                    displayName: usernameOrEmail.includes('@') ? usernameOrEmail.split('@')[0] : usernameOrEmail,
-                    loggedInAt: new Date().toISOString()
-                };
+                const isAdminLogin =
+                    usernameOrEmail === ADMIN_USERNAME &&
+                    password === ADMIN_PASSWORD;
+
+                const user = isAdminLogin
+                    ? {
+                        username: ADMIN_USERNAME,
+                        email: '',
+                        displayName: 'Admin',
+                        role: 'admin',
+                        loggedInAt: new Date().toISOString()
+                    }
+                    : {
+                        username: usernameOrEmail.includes('@') ? usernameOrEmail.split('@')[0] : usernameOrEmail,
+                        email: usernameOrEmail.includes('@') ? usernameOrEmail : '',
+                        displayName: usernameOrEmail.includes('@') ? usernameOrEmail.split('@')[0] : usernameOrEmail,
+                        role: 'user',
+                        loggedInAt: new Date().toISOString()
+                    };
 
                 window.EventsX?.auth?.setCurrentUser?.(user);
                 window.EventsX?.auth?.refreshAuthUi?.();
@@ -56,15 +82,32 @@ class AuthManager {
 
         if (signupFormEl) {
             signupFormEl.addEventListener('submit', () => {
+                const existingUser = window.EventsX?.auth?.getCurrentUser?.();
                 const username = document.getElementById('reg-username')?.value.trim();
                 const fullName = document.getElementById('reg-fullname')?.value.trim();
                 const email = document.getElementById('reg-email')?.value.trim();
+
+                // If already logged in, don't force "sign up" again; keep existing identity/role.
+                if (existingUser) {
+                    const updatedUser = {
+                        ...existingUser,
+                        username: existingUser.username || username || '',
+                        fullName: fullName || existingUser.fullName || '',
+                        email: email || existingUser.email || '',
+                        displayName: fullName || existingUser.displayName || existingUser.fullName || existingUser.username || 'User'
+                    };
+
+                    window.EventsX?.auth?.setCurrentUser?.(updatedUser);
+                    window.EventsX?.auth?.refreshAuthUi?.();
+                    return;
+                }
 
                 const user = {
                     username: username || '',
                     fullName: fullName || '',
                     email: email || '',
                     displayName: fullName || username || 'User',
+                    role: 'user',
                     loggedInAt: new Date().toISOString()
                 };
 
@@ -82,8 +125,19 @@ class AuthManager {
         const sidebarText = document.getElementById('sidebar-text');
         if (!sidebarTitle || !sidebarText) return;
 
+        // User is already authenticated. This page is being used for event registration,
+        // so show the registration form directly and hide the login/sign-up toggle.
         this.authContainer.classList.add('signup-mode');
-        this.switchToSignup(sidebarTitle, sidebarText);
+
+        this.loginForm.classList.remove('active');
+        this.signupForm.classList.add('active');
+
+        sidebarTitle.textContent = "You're logged in";
+        sidebarText.textContent = "Select an event and complete registration.";
+
+        this.toggleBtn.classList.add('hidden');
+        this.toggleBtn.setAttribute('aria-hidden', 'true');
+        this.toggleBtn.tabIndex = -1;
     }
 
     initSlidingAuth() {
@@ -119,10 +173,48 @@ class AuthManager {
 
     initMultiStepForm() {
         const form = document.getElementById('signup-form-element');
+        if (!form) return;
+
         const steps = form.querySelectorAll('.form-step');
         const nextBtns = form.querySelectorAll('.btn-next');
         const prevBtns = form.querySelectorAll('.btn-prev');
         let currentStep = 0;
+
+        // If user is already logged in, skip account creation and jump to the final step (event registration).
+        const existingUser = window.EventsX?.auth?.getCurrentUser?.();
+        const alreadyLoggedIn = !!existingUser;
+
+        if (alreadyLoggedIn && steps.length) {
+            const usernameEl = form.querySelector('#reg-username');
+            const fullNameEl = form.querySelector('#reg-fullname');
+            const emailEl = form.querySelector('#reg-email');
+
+            if (usernameEl && !usernameEl.value) usernameEl.value = existingUser.username || '';
+            if (fullNameEl && !fullNameEl.value) fullNameEl.value = existingUser.fullName || existingUser.displayName || '';
+            if (emailEl && !emailEl.value) emailEl.value = existingUser.email || '';
+
+            // Password fields should not block event registration when already logged in.
+            const passEl = form.querySelector('#reg-password');
+            const confirmEl = form.querySelector('#reg-confirm-password');
+            [passEl, confirmEl].forEach((el) => {
+                if (!el) return;
+                el.required = false;
+                el.value = '';
+                const group = el.closest('.form-group') || el.parentElement;
+                if (group) group.classList.add('hidden');
+            });
+
+            steps.forEach(s => s.classList.remove('active'));
+            currentStep = Math.min(steps.length - 1, 2);
+            steps[currentStep].classList.add('active');
+
+            // Logged-in users shouldn't go back to account steps.
+            form.querySelectorAll('.btn-prev').forEach((btn) => {
+                btn.classList.add('hidden');
+                btn.setAttribute('aria-hidden', 'true');
+                btn.tabIndex = -1;
+            });
+        }
 
         nextBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -145,7 +237,28 @@ class AuthManager {
         form.addEventListener('submit', (e) => {
             if (!this.validateStep(steps[currentStep], currentStep)) {
                 e.preventDefault();
+                return;
             }
+
+            // Submit registration to backend (API) while allowing normal navigation to thank-you.html.
+            const selectedEvent = document.getElementById('reg-event')?.value?.trim();
+            if (!selectedEvent) return;
+
+            const user = window.EventsX?.auth?.getCurrentUser?.();
+            const userKey = String(user?.username || user?.email || document.getElementById('reg-username')?.value || document.getElementById('reg-email')?.value || '').trim().toLowerCase();
+            const dietary = document.getElementById('reg-dietary')?.value?.trim() || '';
+
+            if (!userKey) return;
+
+            window.EventsX?.registrations?.submitRegistration?.({
+                userKey,
+                eventName: selectedEvent,
+                dietary,
+                registeredAt: new Date().toISOString()
+            }).catch((err) => {
+                // Backend may not exist yet; don't block UI navigation.
+                console.warn(err);
+            });
         });
     }
 
@@ -189,15 +302,37 @@ class AuthManager {
             { id: '5', name: 'Teatro Politeama ($95)' }
         ];
 
-        select.innerHTML = '<option value="">-- Select an Event --</option>' + 
-            mockEvents.map(e => `<option value="${e.id}">${e.name}</option>`).join('');
+        const extraEvents = loadExtraEvents().map((e) => {
+            const eventName = String(e?.name || '').trim();
+            const cost = Number(e?.cost);
+            const labelCost = Number.isFinite(cost) ? ` (EGP ${cost})` : '';
+            return {
+                id: eventName,
+                name: `${eventName}${labelCost}`
+            };
+        }).filter(e => e.id);
+
+        const allEvents = [...mockEvents, ...extraEvents];
+
+        select.innerHTML = '<option value="">-- Select an Event --</option>' +
+            allEvents.map(e => `<option value="${e.id}">${e.name}</option>`).join('');
         
         const params = new URLSearchParams(window.location.search);
-        const eventId = params.get('event');
-        if (eventId) {
-            const found = mockEvents.find(e => e.name.includes(eventId));
-            select.value = found ? found.id : eventId;
+        const eventId = (params.get('event') || '').trim();
+        if (!eventId) return;
+
+        const found = allEvents.find(e => e.id === eventId || e.name.includes(eventId));
+        if (found) {
+            select.value = found.id;
+            return;
         }
+
+        // If it's a new event name passed via query param, add it as an option.
+        const opt = document.createElement('option');
+        opt.value = eventId;
+        opt.textContent = eventId;
+        select.appendChild(opt);
+        select.value = eventId;
     }
 }
 

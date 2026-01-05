@@ -42,6 +42,11 @@
   transition: all 0.6s ease-in-out;
 }
 
+/* Override global paragraph color inside sidebar */
+.auth-sidebar #sidebar-text {
+  color: white;
+}
+
 .auth-main {
   flex: 1.5;
   padding: 3rem;

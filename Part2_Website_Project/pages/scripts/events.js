@@ -3,9 +3,24 @@
  * Refactored to ES6 Class Structure
  */
 
+const EXTRA_EVENTS_STORAGE_KEY = 'eventsx_extra_events';
+
+function loadExtraEvents() {
+    try {
+        const parsed = JSON.parse(localStorage.getItem(EXTRA_EVENTS_STORAGE_KEY));
+        return Array.isArray(parsed) ? parsed : [];
+    } catch {
+        return [];
+    }
+}
+
+function saveExtraEvents(events) {
+    localStorage.setItem(EXTRA_EVENTS_STORAGE_KEY, JSON.stringify(events));
+}
+
 class EventCatalog {
     constructor(data) {
-        this.events = data;
+        this.events = Array.isArray(data) ? data : [];
         this.tbody = document.getElementById('events-tbody');
         this.categoryFilter = document.getElementById('category-filter');
         this.priceSort = document.getElementById('price-sort');
@@ -33,6 +48,11 @@ class EventCatalog {
         if (this.searchInput) {
             this.searchInput.addEventListener('input', () => this.filterAndSort());
         }
+
+        document.addEventListener('eventsx:addEvent', (e) => {
+            const event = e.detail?.event;
+            if (event) this.addEvent(event);
+        });
     }
 
     applyUrlQuery() {
@@ -80,6 +100,37 @@ class EventCatalog {
         `).join('');
     }
 
+    addEvent(eventObj) {
+        if (!window.EventsX?.auth?.isAdmin?.()) {
+            window.EventsX?.showNotification?.('Error', 'Admin only.', 'error');
+            return;
+        }
+
+        const event = {
+            name: String(eventObj?.name || '').trim(),
+            category: String(eventObj?.category || '').trim(),
+            date: String(eventObj?.date || '').trim(),
+            location: String(eventObj?.location || '').trim(),
+            cost: Number(eventObj?.cost || 0),
+            image: String(eventObj?.image || '').trim()
+        };
+
+        if (!event.name || !event.category || !event.date || !event.location || !Number.isFinite(event.cost)) {
+            window.EventsX?.showNotification?.('Error', 'Please fill all event fields correctly.', 'error');
+            return;
+        }
+
+        this.events.unshift(event);
+
+        const extras = loadExtraEvents();
+        extras.unshift(event);
+        saveExtraEvents(extras.slice(0, 200));
+
+        document.dispatchEvent(new CustomEvent('eventsx:eventAdded', { detail: { event } }));
+        this.filterAndSort();
+        window.EventsX?.showNotification?.('Success', 'Event added successfully.', 'success');
+    }
+
     filterAndSort() {
         const category = this.categoryFilter.value.toLowerCase();
         const sort = this.priceSort.value;
@@ -107,16 +158,39 @@ class EventCatalog {
     }
 }
 
-class EventsCountLabel {
+class AdminAddEventForm {
     constructor() {
-        this.el = document.getElementById('events-count');
-        if (!this.el) return;
+        this.section = document.getElementById('admin-add-event');
+        this.form = document.getElementById('admin-add-event-form');
 
-        document.addEventListener('eventsx:eventsUpdated', (e) => {
-            const detail = e.detail || {};
-            const total = Number(detail.total) || 0;
-            const visible = Number(detail.visible) || 0;
-            this.el.textContent = `Showing ${visible} of ${total} events`;
+        if (!this.section || !this.form) return;
+
+        this.syncVisibility();
+        this.bind();
+
+        document.addEventListener('eventsx:authChanged', () => this.syncVisibility());
+    }
+
+    syncVisibility() {
+        const show = !!window.EventsX?.auth?.isAdmin?.();
+        this.section.classList.toggle('hidden', !show);
+    }
+
+    bind() {
+        this.form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const event = {
+                name: document.getElementById('admin-event-name')?.value,
+                category: document.getElementById('admin-event-category')?.value,
+                date: document.getElementById('admin-event-date')?.value,
+                location: document.getElementById('admin-event-location')?.value,
+                cost: parseFloat(document.getElementById('admin-event-cost')?.value),
+                image: document.getElementById('admin-event-image')?.value
+            };
+
+            document.dispatchEvent(new CustomEvent('eventsx:addEvent', { detail: { event } }));
+            this.form.reset();
         });
     }
 }
@@ -147,6 +221,7 @@ const MOCK_EVENTS = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    window.eventCatalog = new EventCatalog(MOCK_EVENTS);
-    window.eventsCountLabel = new EventsCountLabel();
+    const allEvents = [...MOCK_EVENTS, ...loadExtraEvents()];
+    window.eventCatalog = new EventCatalog(allEvents);
+    window.adminAddEventForm = new AdminAddEventForm();
 });

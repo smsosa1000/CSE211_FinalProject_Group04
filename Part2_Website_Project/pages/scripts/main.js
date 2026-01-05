@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCurrentYear();
 
     initDashboardLogout();
+    initDashboardRegistrations();
 
     refreshAuthUi();
 });
@@ -54,6 +55,7 @@ function initParallax() {
 
 // ========== AUTH STATE (FRONTEND ONLY / LOCALSTORAGE) ==========
 const AUTH_STORAGE_KEY = 'eventsx_current_user';
+const API_BASE = '';
 
 function safeJsonParse(value) {
     try {
@@ -71,12 +73,34 @@ function isLoggedIn() {
     return !!getCurrentUser();
 }
 
+function getRole() {
+    const role = getCurrentUser()?.role;
+    return (role ? String(role) : 'user').toLowerCase();
+}
+
+function isAdmin() {
+    return isLoggedIn() && getRole() === 'admin';
+}
+
+function dispatchAuthChanged() {
+    document.dispatchEvent(new CustomEvent('eventsx:authChanged', {
+        detail: {
+            isLoggedIn: isLoggedIn(),
+            role: getRole(),
+            user: getCurrentUser()
+        }
+    }));
+}
+
 function setCurrentUser(user) {
-    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(user));
+    const safeUser = { role: 'user', ...(user || {}) };
+    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(safeUser));
+    dispatchAuthChanged();
 }
 
 function clearCurrentUser() {
     localStorage.removeItem(AUTH_STORAGE_KEY);
+    dispatchAuthChanged();
 }
 
 function inPagesFolder() {
@@ -162,6 +186,123 @@ function refreshAuthUi() {
     updateHeaderAuthUi();
     updateHomeHeroCta();
     populateDashboardProfile();
+    dispatchAuthChanged();
+}
+
+// ========== REGISTRATIONS (BACKEND-READY / API) ==========
+function apiUrl(path) {
+    return `${API_BASE}${path}`;
+}
+
+async function apiJson(path, options = {}) {
+    const res = await fetch(apiUrl(path), {
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+            ...(options.headers || {})
+        },
+        ...options
+    });
+
+    if (!res.ok) {
+        const text = await res.text().catch(() => '');
+        throw new Error(text || `Request failed: ${res.status}`);
+    }
+
+    return res.json();
+}
+
+/**
+ * Submits a registration to the backend.
+ * Endpoint to implement: POST /api/registrations
+ */
+function submitRegistration(payload) {
+    const body = JSON.stringify(payload || {});
+    const url = apiUrl('/api/registrations');
+
+    // Prefer sendBeacon so the request can be sent while navigating to thank-you.html.
+    if (navigator.sendBeacon) {
+        const blob = new Blob([body], { type: 'application/json' });
+        const ok = navigator.sendBeacon(url, blob);
+        if (ok) {
+            document.dispatchEvent(new CustomEvent('eventsx:registrationAdded', { detail: { registration: payload } }));
+            return Promise.resolve(true);
+        }
+    }
+
+    // Fallback: keepalive fetch (may still be canceled by some browsers).
+    return fetch(url, {
+        method: 'POST',
+        credentials: 'include',
+        keepalive: true,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body
+    }).then((res) => {
+        if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+        document.dispatchEvent(new CustomEvent('eventsx:registrationAdded', { detail: { registration: payload } }));
+        return true;
+    });
+}
+
+/**
+ * Fetches registrations for the current user.
+ * Endpoint to implement: GET /api/registrations/me
+ */
+async function listRegistrationsForCurrentUser() {
+    return apiJson('/api/registrations/me', { method: 'GET' });
+}
+
+function initDashboardRegistrations() {
+    const container = document.getElementById('dashboard-events');
+    if (!container) return;
+
+    const render = async () => {
+        const user = getCurrentUser();
+
+        if (!user) {
+            container.innerHTML = '<div class="card"><div class="card-body"><h3 class="card-title">Not logged in</h3><p class="card-text">Log in to see your registered events.</p></div></div>';
+            return;
+        }
+
+        try {
+            const regs = await listRegistrationsForCurrentUser();
+            const list = Array.isArray(regs) ? regs : [];
+
+            if (!list.length) {
+                container.innerHTML = '<div class="card"><div class="card-body"><h3 class="card-title">No registered events yet</h3><p class="card-text">Register for an event and it will appear here.</p></div></div>';
+                return;
+            }
+
+            container.innerHTML = list.map((r) => {
+                const eventName = String(r?.eventName || r?.event || '').trim();
+                const dateRaw = r?.registeredAt || r?.createdAt;
+                const dateText = dateRaw ? new Date(dateRaw).toLocaleString() : '';
+                const dietaryText = String(r?.dietary || '').trim();
+                const dietary = dietaryText ? `<p class="card-text"><strong>Dietary:</strong> ${dietaryText}</p>` : '';
+
+                return `
+                    <article class="card">
+                        <img class="card-image" src="images/logo.png" alt="${eventName || 'Registered event'}" onerror="this.style.display='none'">
+                        <div class="card-body">
+                            <h3 class="card-title">${eventName || 'Event'}</h3>
+                            <p class="card-text"><strong>Registered:</strong> ${dateText}</p>
+                            ${dietary}
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        } catch (err) {
+            container.innerHTML = '<div class="card"><div class="card-body"><h3 class="card-title">Unable to load registrations</h3><p class="card-text">Backend API not available yet.</p></div></div>';
+            window.EventsX?.showNotification?.('Info', 'Registrations API not available yet.', 'info');
+            console.warn(err);
+        }
+    };
+
+    void render();
+    document.addEventListener('eventsx:registrationAdded', render);
+    document.addEventListener('eventsx:authChanged', render);
 }
 
 // ========== NAVIGATION ==========
@@ -302,9 +443,15 @@ Object.assign(window.EventsX, {
     auth: {
         getCurrentUser,
         isLoggedIn,
+        isAdmin,
+        getRole,
         setCurrentUser,
         clearCurrentUser,
         refreshAuthUi
+    },
+    registrations: {
+        submitRegistration,
+        listRegistrationsForCurrentUser
     }
 });
 
