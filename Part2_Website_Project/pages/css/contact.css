@@ -1,0 +1,40 @@
+/* ===========================================
+   EVENTSX - Contact Page Styles
+   Author: Group04_223101629_223101614_223104728_223104766
+   Course: CSE211 Web Programming
+   Assignment: Course Project
+   Date:	2/1/2026
+   Page: pages/contact.html
+   Notes: Only page-specific overrides live here.
+   Shared/global styles are in main_style.css
+============================================= */
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.contact-item i {
+  margin-top: 0.25rem;
+}
+
+.contact-item p {
+  margin: 0;
+}
+
+/* Make the Contact page sidebar 'Follow Us' icons readable on light backgrounds */
+.content-secondary .footer-social .social-link {
+  background: #e3f2fd;
+  color: #2980b9;
+}
+
+.content-secondary .footer-social .social-link:hover {
+  color: white;
+}

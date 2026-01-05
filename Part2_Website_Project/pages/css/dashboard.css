@@ -1,0 +1,18 @@
+/* ===========================================
+   EVENTSX - Dashboard Page Styles
+   Author: Group04_223101629_223101614_223104728_223104766
+   Course: CSE211 Web Programming
+   Assignment: Course Project
+   Date:	2/1/2026
+   Page: pages/dashboard.html
+   Notes: Only page-specific overrides live here.
+   Shared/global styles are in main_style.css
+============================================= */
+
+.rounded-circle {
+  border-radius: 50%;
+}
+
+.border-primary {
+  border: 3px solid #3498db;
+}

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Get in touch with the EventsX team for support, inquiries, or feedback.">
-    <meta name="author" content="Omar Khalifa 223101614">
-    <title>Contact Us - EventsX</title>
+    <meta name="description" content="Manage your event registrations, profile, and budget from your personal EventsX dashboard.">
+    <meta name="author" content="Group05">
+    <title>Dashboard - EventsX</title>
     <link rel="icon" href="images/logo.png" type="image/png">
     <link rel="stylesheet" href="css/main_style.css">
-    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -31,11 +31,11 @@
                 <nav class="primary-nav" id="main-navigation" aria-label="Primary Navigation">
                     <ul class="nav-list">
                         <li class="nav-item"><a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
-                        <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li class="nav-item"><a href="dashboard.html" class="nav-link active" aria-current="page"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
                         <li class="nav-item"><a href="events.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Events Catalog</a></li>
                         <li class="nav-item"><a href="registration.html" class="nav-link"><i class="fas fa-user-plus"></i> Registration</a></li>
                         <li class="nav-item"><a href="budget-calculator.html" class="nav-link"><i class="fas fa-calculator"></i> Budget Calculator</a></li>
-                        <li class="nav-item"><a href="contact.html" class="nav-link active" aria-current="page"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                        <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact Us</a></li>
                         <li class="nav-item"><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
                         <li class="nav-item"><a href="https://www.gu.edu.eg" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="fas fa-external-link-alt"></i> Galala University</a></li>
                     </ul>
@@ -59,7 +59,7 @@
         <div class="container">
             <ol class="breadcrumb-list">
                 <li class="breadcrumb-item"><a href="../index.html" class="breadcrumb-link">Home</a></li>
-                <li class="breadcrumb-item"><span class="breadcrumb-current">Contact</span></li>
+                <li class="breadcrumb-item"><span class="breadcrumb-current">Dashboard</span></li>
             </ol>
         </div>
     </nav>
@@ -68,85 +68,47 @@
     <main id="main-content" class="main-container">
         <div class="container">
             <div class="page-header">
-                <h1>Contact Us</h1>
-                <p class="lead">We're here to help! Reach out through any of these channels.</p>
+                <h1>Dashboard</h1>
+                <p class="lead">Manage your event activities and account preferences effortlessly.</p>
             </div>
 
             <div class="two-column-layout">
-                <!-- Contact Form -->
-                <div class="content-primary">
-                    <section class="form-container">
-                        <h2>Send us a Message</h2>
-                        <form id="contact-form">
-                            <div class="form-group">
-                                <label for="contact-name" class="form-label">Name <span class="required">*</span></label>
-                                <input type="text" id="contact-name" name="name" class="form-control" required placeholder="Your full name">
-                            </div>
-                            <div class="grid grid-2">
-                                <div class="form-group">
-                                    <label for="contact-email" class="form-label">Email <span class="required">*</span></label>
-                                    <input type="email" id="contact-email" name="email" class="form-control" required placeholder="your@email.com">
-                                </div>
-                                <div class="form-group">
-                                    <label for="contact-subject" class="form-label">Subject</label>
-                                    <select id="contact-subject" name="subject" class="form-control">
-                                        <option value="general">General Inquiry</option>
-                                        <option value="support">Technical Support</option>
-                                        <option value="partnership">Partnership</option>
-                                        <option value="feedback">Feedback</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="contact-message" class="form-label">Message <span class="required">*</span></label>
-                                <textarea id="contact-message" name="message" class="form-control" rows="6" required placeholder="How can we help you today?"></textarea>
-                            </div>
-                            <div class="form-actions">
-                                <button type="submit" class="btn btn-primary">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
-                            </div>
-                        </form>
-                    </section>
-                </div>
-
-                <!-- Info Sidebar -->
+                <!-- Primary Sidebar / Stats -->
                 <aside class="content-secondary">
-                    <section class="sidebar-section">
-                        <h3 class="sidebar-title">Contact Information</h3>
-                        <div class="contact-details">
-                            <div class="contact-item">
-                                <i class="fas fa-map-marker-alt text-primary"></i>
-                                <div>
-                                    <strong>Address</strong>
-                                    <p>Galala University, Suez, Egypt</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone text-primary"></i>
-                                <div>
-                                    <strong>Phone</strong>
-                                    <p>+20 15888</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-envelope text-primary"></i>
-                                <div>
-                                    <strong>Email</strong>
-                                    <p>info@eventsx-gu.edu</p>
-                                </div>
-                            </div>
-                        </div>
+                    <section class="sidebar-section text-center">
+                        <img src="images/profile.png" alt="User Avatar" class="rounded-circle border-primary mb-3" width="120" height="120" id="user-avatar">
+                        <h2 class="sidebar-title" id="user-name">Loading Profile...</h2>
+                        <ul class="list-unstyled text-left" id="user-details">
+                            <!-- Dynamic user info -->
+                        </ul>
+                        <button class="btn btn-sm btn-outline btn-block mt-3">Edit Profile</button>
+                        <button class="btn btn-sm btn-outline btn-block mt-2" id="logout-btn" type="button">Logout</button>
                     </section>
 
                     <section class="sidebar-section">
-                        <h3 class="sidebar-title">Follow Us</h3>
-                        <div class="footer-social">
-                            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <h3 class="sidebar-title">Quick Stats</h3>
+                        <div class="p-2" id="user-stats">
+                            <!-- Dynamic stats -->
                         </div>
                     </section>
                 </aside>
+
+                <!-- Primary Content / Events -->
+                <div class="content-primary">
+                    <section>
+                        <h2>My Registered Events</h2>
+                        <div class="article-grid" id="dashboard-events">
+                            <!-- Data will be populated from backend/DB -->
+                        </div>
+                    </section>
+
+                    <section class="mt-5">
+                        <h2>Notifications</h2>
+                        <div class="card" id="dashboard-notifications">
+                            <ul class="list-unstyled p-0 m-0" id="dashboard-notifications-list"></ul>
+                        </div>
+                    </section>
+                </div>
             </div>
         </div>
     </main>
@@ -158,7 +120,6 @@
                 <div class="footer-section">
                     <h3>EventsX</h3>
                     <p>Your ultimate event planning platform. Discover, register, and manage events with ease.</p>
-                    <!-- Repeated Social links as in Master Footer -->
                     <div class="footer-social">
                         <a href="https://www.facebook.com/EventsXOfficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://twitter.com/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>

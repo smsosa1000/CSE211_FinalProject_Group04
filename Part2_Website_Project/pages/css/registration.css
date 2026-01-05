@@ -1,0 +1,142 @@
+/* ===========================================
+   EVENTSX - Registration/Login Page Styles
+   Author: Group04_223101629_223101614_223104728_223104766
+   Course: CSE211 Web Programming
+   Assignment: Course Project
+   Date:	2/1/2026
+   Page: pages/registration.html
+   Notes: Only page-specific overrides live here.
+   Shared/global styles are in main_style.css
+============================================= */
+
+/* ========== SLIDING AUTH FORM ========== */
+.auth-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 200px);
+  padding: 2rem;
+}
+
+.auth-container {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 900px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+}
+
+.auth-sidebar {
+  flex: 1;
+  background: linear-gradient(135deg, #9b59b6 0%, #3498db 100%);
+  color: white;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: all 0.6s ease-in-out;
+}
+
+.auth-main {
+  flex: 1.5;
+  padding: 3rem;
+  transition: all 0.6s ease-in-out;
+}
+
+.auth-form-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.auth-form {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.auth-form.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-toggle-btn {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  margin-top: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.auth-toggle-btn:hover {
+  background: white;
+  color: #3498db;
+}
+
+/* Swapping sides for desktop */
+.auth-container.signup-mode {
+  flex-direction: row-reverse;
+}
+
+.form-step {
+  display: none;
+  animation: slideIn 0.4s ease-out;
+}
+
+.form-step.active {
+  display: block;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-page-wrapper {
+    align-items: flex-start;
+    min-height: auto;
+    padding: 1rem;
+  }
+
+  .auth-container {
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  /* Override desktop swap behavior on mobile */
+  .auth-container.signup-mode {
+    flex-direction: column;
+  }
+
+  .auth-sidebar {
+    padding: 2rem;
+  }
+  .auth-main {
+    padding: 2rem;
+  }
+}
