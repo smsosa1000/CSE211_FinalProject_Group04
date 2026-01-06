@@ -1,0 +1,81 @@
+/* ===========================================
+   EVENTSX - Home Page Styles
+   Author: Group04_223101629_223101614_223104728_223104766
+   Course: CSE211 Web Programming
+   Assignment: Course Project
+   Date:	2/1/2026
+   Page: index.html
+   Notes: Only page-specific overrides live here.
+   Shared/global styles are in main_style.css
+============================================= */
+
+/* Home hero uses background image (override the shared .hero) */
+.hero {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    color: white;
+    padding: 6rem 2rem;
+    text-align: center;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(81, 78, 78, 0.122), rgba(81, 78, 78, 0.122));
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  will-change: transform;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1,
+.hero h2 {
+  color: white;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-top: 0;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.hero-btn {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+}
+
+.badge-inline {
+  margin-left: 1rem;
+}
+
+.card-footer-clean {
+  background: transparent;
+  border: none;
+  padding: 1rem 0 0;
+}
