@@ -1,4 +1,5 @@
 # CSE211 Web Development Final Project - EventsX
+https://eventsx.infinityfreeapp.com/pages/events.html
 
 **EventsX** is a modern event management platform designed for seamless discovery, registration, and budget planning for events. The platform offers a dynamic user experience with responsive design, multi-currency support, and an intuitive interface.
 
