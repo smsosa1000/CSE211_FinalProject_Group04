@@ -1,7 +1,7 @@
 <?php
+// المسار: /htdocs/api/auth/login.php
 
-
-
+// محاولة استدعاء ملف الاتصال (نخرج خطوة للوراء من auth إلى api)
 $dbPath = __DIR__ . '/../db_connect.php';
 
 if (!file_exists($dbPath)) {
@@ -30,14 +30,14 @@ if (!$login || !$password) {
 try {
     $pdo = getDBConnection();
 
-
+    // البحث عن المستخدم
     $stmt = $pdo->prepare("SELECT id, username, name, email, role, password_hash FROM users WHERE email = ? OR username = ?");
     $stmt->execute([$login, $login]);
     $user = $stmt->fetch();
 
-
+    // التحقق من الباسورد
     if ($user && password_verify($password, $user['password_hash'])) {
-
+        // تجديد الجلسة
         session_regenerate_id(true);
         
         $_SESSION['user'] = [
@@ -53,7 +53,7 @@ try {
         echo json_encode(['ok' => false, 'error' => 'Invalid username or password']);
     }
 } catch (Exception $e) {
-
+    // في حالة الخطأ، نرسل رسالة عامة
     echo json_encode(['ok' => false, 'error' => 'Login system error']);
 }
 ?>

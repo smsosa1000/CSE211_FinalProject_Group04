@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 session_set_cookie_params([
     'lifetime' => 86400,
     'path' => '/',
-    'secure' => false,
+    'secure' => false, // خليها true لو الموقع https
     'httponly' => true,
     'samesite' => 'Lax'
 ]);

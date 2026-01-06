@@ -1,5 +1,6 @@
 /**
  * EVENTSX - Events Catalog Logic (Connected to Backend)
+ * الإصدار المصحح للربط النهائي مع قاعدة البيانات
  */
 
 const EXTRA_EVENTS_STORAGE_KEY = 'eventsx_extra_events';
@@ -75,7 +76,7 @@ class EventCatalog {
 
         try {
             if (window.EventsX && window.EventsX.registerForEvent) {
-
+                // نستخدم name كـ مفتاح للحجز
                 await window.EventsX.registerForEvent(event.name, event.name);
                 btnElement.innerHTML = '<i class="fas fa-check"></i> Registered';
                 btnElement.classList.replace('btn-primary', 'btn-success');
@@ -111,16 +112,16 @@ class EventCatalog {
         }
 
         this.tbody.innerHTML = data.map((event) => {
-
+            // نستخدمindexOf للعثور على الفهرس العالمي في المصفوفة الأصلية لضمان عمل أزرار View/Register
             const globalIndex = this.events.indexOf(event);
-            
+
             const imageFile = event.image ? escapeHtml(event.image) : '';
             const safeName = escapeHtml(event.name);
             const safeCategory = escapeHtml(event.category);
             const safeDate = escapeHtml(event.date);
             const safeLocation = escapeHtml(event.location);
-
-            const costValue = Number(event.cost || 0); 
+            // التأكد من قراءة الحقل باسم cost كما يرسله السيرفر
+            const costValue = Number(event.cost || 0);
             const costText = costValue.toFixed(2);
 
             return `
@@ -132,7 +133,7 @@ class EventCatalog {
                     <td>${costText}</td>
                     <td>
                         <figure class="table-figure">
-                            <img src="../images/events/${imageFile}" alt="${safeName}" width="80" height="60" onerror="this.src='../images/logo.png'">
+                            <img src="./images/events/${imageFile}" alt="${safeName}" width="80" height="60" onerror="this.style.display='none'">
                         </figure>
                     </td>
                     <td>
@@ -164,7 +165,7 @@ class EventCatalog {
 
         const modal = document.createElement('div');
         modal.id = 'eventsx-modal';
-        
+
         modal.innerHTML = `
             <div style="position: fixed; inset: 0; background: rgba(0,0,0,0.55); display: flex; align-items: center; justify-content: center; z-index: 99999; padding: 16px;">
                 <div style="width: min(600px, 100%); background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.25);">
@@ -173,7 +174,7 @@ class EventCatalog {
                         <button type="button" id="eventsx-modal-close" class="btn btn-sm btn-outline">Close</button>
                     </div>
                     <div style="padding: 16px;">
-                        <img src="../images/events/${imageFile}" alt="${safeName}" style="width:100%; max-height:250px; object-fit:cover; border-radius:8px; margin-bottom:15px;" onerror="this.style.display='none'">
+                        <img src="./images/events/${imageFile}" alt="${safeName}" style="width:100%; max-height:250px; object-fit:cover; border-radius:8px; margin-bottom:15px;" onerror="this.style.display='none'">
                         <p><strong>Category:</strong> ${safeCategory}</p>
                         <p><strong>Date:</strong> ${safeDate}</p>
                         <p><strong>Location:</strong> ${safeLocation}</p>
@@ -191,7 +192,7 @@ class EventCatalog {
         modal.addEventListener('click', (e) => { if (e.target === modal.firstElementChild) close(); });
 
         const modalRegBtn = modal.querySelector('#modal-register-btn');
-        if(modalRegBtn) {
+        if (modalRegBtn) {
             modalRegBtn.addEventListener('click', () => {
                 this.handleRegistration(event, modalRegBtn);
             });
@@ -236,11 +237,11 @@ class AdminAddEventForm {
         this.section = document.getElementById('admin-add-event');
         this.form = document.getElementById('admin-add-event-form');
         if (!this.section || !this.form) return;
-        
-        if(window.EventsX?.auth?.isAdmin?.()) {
+
+        if (window.EventsX?.auth?.isAdmin?.()) {
             this.section.classList.remove('hidden');
         }
-        
+
         this.form.addEventListener('submit', (e) => {
             e.preventDefault();
             const event = {
@@ -257,7 +258,7 @@ class AdminAddEventForm {
     }
 }
 
-const MOCK_EVENTS = [    
+const MOCK_EVENTS = [
     { name: 'Salt & Pepper Supper Club', category: 'Food', date: 'Jan 3, 2026, 10:00 PM', location: 'London', cost: 65, image: 'event1_salt_pepper_supper_club.jpeg' },
     { name: 'Spiritus Natalis', category: 'Music / Culture', date: 'Jan 1, 2026, 9:00 PM', location: 'Porto', cost: 70, image: 'event2_spiritus_natalis.jpeg' },
     { name: 'Carrossel Veneziano', category: 'Leisure', date: 'Jan 1, 2026, 12:00 AM', location: 'Cascais', cost: 40, image: 'event3_carrossel_veneziano.jpeg' },
@@ -282,23 +283,23 @@ const MOCK_EVENTS = [
 ];
 
 document.addEventListener('DOMContentLoaded', async () => {
-
+    // 1. تحديث UI الهيدر
     if (window.EventsX && window.EventsX.auth && window.EventsX.auth.refreshAuthUi) {
-        try { await window.EventsX.auth.refreshAuthUi(); } catch(e) {}
+        try { await window.EventsX.auth.refreshAuthUi(); } catch (e) { }
     }
 
-
+    // 2. جلب البيانات من PHP
     try {
         console.log("Fetching events from API...");
         const response = await fetch('../api/events.php');
-        
+
         if (!response.ok) throw new Error("HTTP Error: " + response.status);
-        
+
         const data = await response.json();
         console.log("API Response:", data);
 
         if (data.ok && Array.isArray(data.events)) {
-
+            // دمج بيانات الداتابيز مع أي بيانات مضافة يدوياً
             const finalData = [...data.events, ...loadExtraEvents()];
             window.eventCatalog = new EventCatalog(finalData);
         } else {

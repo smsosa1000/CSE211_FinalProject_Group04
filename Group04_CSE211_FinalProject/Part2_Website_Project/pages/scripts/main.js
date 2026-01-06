@@ -1,5 +1,6 @@
 /**
  * EVENTSX - Global Core Logic (Session Based Only)
+ * تم إزالة LocalStorage بالكامل للاعتماد على السيرفر
  */
 
 (function () {
@@ -12,7 +13,7 @@
 
     initDashboardLogout();
 
-
+    // تحميل المستخدم من السيرفر وتحديث الواجهة
     void refreshAuthUi();
   });
 
@@ -100,10 +101,10 @@
     return `${API_BASE}${path}`;
   }
 
-
+  // الدالة الأساسية للاتصال بالسيرفر
   async function apiJson(path, options = {}) {
     const res = await fetch(apiUrl(path), {
-      credentials: 'include',
+      credentials: 'include', // مهم جداً عشان الكوكيز تتبعت
       headers: {
         'Content-Type': 'application/json',
         ...(options.headers || {})
@@ -129,10 +130,10 @@
     return data;
   }
 
-
+  // === دالة تحميل المستخدم (معدلة للاعتماد على السيرفر فقط) ===
   async function loadCurrentUserFromSession() {
     try {
-
+      // نسأل السيرفر مباشرة: مين المستخدم الحالي؟
       const data = await apiJson('/auth/me.php', { method: 'GET' });
       const user = data?.user || data?.data || data;
 
@@ -141,13 +142,13 @@
 
       currentUserCache = validUser;
       
-
+      // لاحظ: شلنا كود localStorage.setItem من هنا
 
       currentUserLoaded = true;
       console.log("Session User:", currentUserCache ? currentUserCache.username : "Guest");
       return currentUserCache;
     } catch (e) {
-
+      // لو حصل خطأ أو مفيش مستخدم
       currentUserCache = null;
       currentUserLoaded = true;
       return null;
@@ -186,12 +187,12 @@
     const detailsEl = document.getElementById('user-details');
     const logoutBtn = document.getElementById('logout-btn');
     
-
+    // لو مش في صفحة الداشبورد، اخرج
     if (!nameEl || !detailsEl) return;
 
     const user = getCurrentUser();
     
-
+    // لو مفيش مستخدم (والصفحة لسه مفتوحة)، اعرض Guest
     if (!user) {
       nameEl.textContent = 'Guest';
       if (logoutBtn) logoutBtn.style.display = 'none';
@@ -202,7 +203,7 @@
       return;
     }
 
-
+    // عرض بيانات المستخدم القادمة من السيرفر
     if (logoutBtn) logoutBtn.style.display = '';
     nameEl.textContent = user.name || user.displayName || user.fullName || user.username || 'User';
 
@@ -224,7 +225,7 @@
     listEl.innerHTML = `<li>Loading...</li>`;
 
     try {
-
+      // طلب الحجوزات من السيرفر
       const data = await apiJson('/registrations/list.php', { method: 'GET' });
       const rows = data?.registrations || data?.data || data?.items || [];
 
@@ -262,13 +263,13 @@
     await loadMyRegistrations();
   }
 
-
+  // === دالة تسجيل الخروج ===
   function initDashboardLogout() {
     const btn = document.getElementById('logout-btn');
     if (!btn) return;
 
     btn.addEventListener('click', async () => {
-
+      // طلب الخروج من السيرفر (مسح السيشن هناك)
       try {
         await apiJson('/auth/logout.php', { method: 'POST' });
       } catch (err) {
@@ -451,7 +452,7 @@
 
         showNotification('Success', `Registered for: ${eventName}`, 'success');
         
-
+        // استنى ثانية وحول للداشبورد عشان يشوف الرسالة
         setTimeout(() => {
              window.location.href = pathToDashboard();
         }, 1000);

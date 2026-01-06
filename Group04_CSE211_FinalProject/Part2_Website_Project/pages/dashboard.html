@@ -212,12 +212,13 @@
         </div>
     </footer>
 
+    <!-- ✅ لازم يكون موجود -->
     <script src="scripts/main.js"></script>
     <script src="scripts/main.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-
+            // 1. نجيب البيانات من "شنطة" المتصفح
             const storedData = localStorage.getItem('eventsx_user');
 
             if (storedData) {
@@ -225,15 +226,15 @@
                     const user = JSON.parse(storedData);
                     console.log("✅ Found user in localStorage:", user);
 
-
+                    // 2. نعرض الاسم في المكان المخصص
                     const nameElement = document.getElementById('user-name');
                     if (nameElement) {
-
+                        // بنعرض الاسم، ولو مش موجود نعرض اليوزرنيم
                         nameElement.textContent = user.name || user.fullName || user.username || "Welcome!";
-                        nameElement.style.color = "#2c3e50";
+                        nameElement.style.color = "#2c3e50"; // لون تأكيد إن الكود اشتغل
                     }
 
-
+                    // 3. نعرض التفاصيل الإضافية (اختياري)
                     const detailsElement = document.getElementById('user-details');
                     if (detailsElement) {
                         detailsElement.innerHTML = `
@@ -243,12 +244,12 @@
                         `;
                     }
 
-
+                    // 4. نظهر زرار الخروج
                     const logoutBtn = document.getElementById('logout-btn');
                     if (logoutBtn) {
                         logoutBtn.onclick = function() {
-                            localStorage.removeItem('eventsx_user');
-                            window.location.href = 'registration.html';
+                            localStorage.removeItem('eventsx_user'); // مسح البيانات
+                            window.location.href = 'registration.html'; // طرد للمستخدم
                         };
                     }
 
@@ -256,12 +257,11 @@
                     console.error("Error parsing user data:", e);
                 }
             } else {
-
+                // لو مفيش بيانات، نطرده لصفحة الدخول (أمان)
                 console.log("❌ No user found, redirecting...");
-
+                // window.location.href = 'registration.html'; // شيل العلامة دي لو عايز تفعل الطرد
             }
         });
     </script>
  </body>
  </html>
-

@@ -1,39 +1,40 @@
 /**
  * EVENTSX - Authentication Logic (Session Based)
+ * الإصدار الكامل والمصحح لربط الواجهة بالباك إند
  */
 
 class AuthManager {
   constructor() {
-
+    // 1. تعريف العناصر الأساسية
     this.authContainer = document.querySelector('.auth-container');
     this.toggleBtn = document.getElementById('auth-toggle-btn');
     
-
+    // ربط الحاويات (Sections) لتبديل الأنماط
     this.loginSection = document.getElementById('login-form');
     this.signupSection = document.getElementById('signup-form');
 
-
+    // تحديد مسار الـ API بناءً على موقع الملف الحالي
     this.API_BASE = this.inPagesFolder() ? '../api' : 'api';
 
-
+    // 2. التشغيل المبدئي
     if (this.authContainer && this.toggleBtn) {
       this.initSlidingAuth();
     }
 
-
+    // التحقق من وجود نموذج التسجيل متعدد الخطوات
     if (document.getElementById('signup-form-element')) {
       this.initMultiStepForm();
     }
 
     this.initAuthHandlers();
     
-
+    // التحقق من حالة الدخول بمجرد فتح الصفحة (Auto Redirect)
     void this.autoRedirectIfLoggedIn();
   }
 
   // ---------- Path helpers ----------
   inPagesFolder() {
-
+    // طريقة أدق للتحقق من المجلد الحالي
     return window.location.pathname.includes('/pages/');
   }
 
@@ -54,18 +55,18 @@ class AuthManager {
     const sp = new URLSearchParams(window.location.search || '');
     return {
       next: sp.get('next'),
-      eventKey: sp.get('eventKey') || sp.get('event'),
+      eventKey: sp.get('eventKey') || sp.get('event'), // دعم التسميتين
       eventName: sp.get('eventName') || sp.get('event')
     };
   }
 
-
+  // دالة الاتصال الموحدة بالسيرفر
   async apiRequest(path, { method = 'GET', body = null } = {}) {
     const url = `${this.API_BASE}${path}`;
     const opts = {
       method,
       headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
+      credentials: 'include', // ضروري جداً لعمل الجلسات (Sessions)
     };
     if (body !== null) opts.body = JSON.stringify(body);
 
@@ -83,18 +84,18 @@ class AuthManager {
     return data;
   }
 
-
+  // ما بعد الدخول الناجح: التعامل مع التحويلات وحجز الفعاليات
   async afterLoginSuccess() {
     const { next, eventKey, eventName } = this.getParams();
 
-
+    // 1. إذا كان المستخدم قادماً من صفحة فعاليات (حجز تلقائي)
     if (eventKey || eventName) {
       try {
-
+        // نستخدم دالة الحجز المركزية إذا كانت متوفرة في main.js
         if (window.EventsX?.registerForEvent) {
           await window.EventsX.registerForEvent(eventKey || eventName, eventName || eventKey);
         } else {
-
+          // حجز يدوي مباشر عبر الـ API
           await this.apiRequest('/registrations/register.php', {
             method: 'POST',
             body: { eventKey: eventKey || eventName, eventName: eventName || eventKey }
@@ -109,26 +110,26 @@ class AuthManager {
       }
     }
 
-
+    // 2. التحويل إلى رابط محدد (Redirect URL)
     if (next) {
       window.location.href = decodeURIComponent(next);
       return;
     }
 
-
+    // 3. الافتراضي: لوحة التحكم
     window.location.href = this.pathToDashboard();
   }
 
   // ---------- Auth Flow ----------
   async autoRedirectIfLoggedIn() {
-
+    // لا نحتاج للتحويل إذا كنا بالفعل في صفحة الدخول إلا لو كان المستخدم مسجلاً
     try {
       const data = await this.apiRequest('/auth/me.php');
       if (data && data.user) {
         window.location.href = this.pathToDashboard();
       }
     } catch (e) {
-
+      // مستخدم غير مسجل، لا نفعل شيئاً
     }
   }
 
@@ -274,7 +275,7 @@ class AuthManager {
       }
     });
 
-
+    // تحقق إضافي للباسورد في الخطوة الأولى
     if (stepIdx === 0) {
       const pass = document.getElementById('reg-password')?.value;
       const conf = document.getElementById('reg-confirm-password')?.value;
@@ -292,7 +293,7 @@ class AuthManager {
   }
 }
 
-
+// تشغيل النظام
 document.addEventListener('DOMContentLoaded', () => {
   window.authManager = new AuthManager();
 });

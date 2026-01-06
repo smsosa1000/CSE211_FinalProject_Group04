@@ -190,8 +190,11 @@
         </div>
     </footer>
 
-    <script src="scripts/main.js"></script>
-    <script src="scripts/auth.js"></script>
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/auth.js"></script>
+    
+    
+    
     <script>
 (function() {
     const initAuth = () => {
@@ -200,6 +203,7 @@
         const loginForm = document.getElementById('login-form-element');
         const signupForm = document.getElementById('signup-form-element');
 
+        // 1. تحريك الزر (الانتقال بين Login و Signup)
         if (toggleBtn && container) {
             toggleBtn.onclick = (e) => {
                 e.preventDefault();
@@ -213,6 +217,7 @@
             };
         }
 
+        // 2. تنقل الخطوات (Next/Back)
         const nextBtn = document.querySelector('.btn-next');
         const prevBtn = document.querySelector('.btn-prev');
         if (nextBtn) nextBtn.onclick = () => {
@@ -224,12 +229,14 @@
             document.getElementById('step-0').classList.add('active');
         };
 
+        // 3. عملية الـ Signup (الحفظ في قاعدة البيانات) ✅
         if (signupForm) {
             signupForm.onsubmit = async function(e) {
                 e.preventDefault();
                 const btn = signupForm.querySelector('button[type="submit"]');
                 const originalText = btn.innerText;
                 
+                // تجميع البيانات
                 const userData = {
                     username: document.getElementById('reg-username').value.trim(),
                     fullname: document.getElementById('reg-fullname').value.trim(),
@@ -265,6 +272,7 @@
             };
         }
 
+        // 4. عملية الـ Login (موجودة سابقاً)
         if (loginForm) {
             loginForm.onsubmit = async function(e) {
                 e.preventDefault();
@@ -291,9 +299,11 @@
     if (document.readyState === "complete") { initAuth(); }
     else { window.addEventListener("load", initAuth); }
 })();
+</script>
     </script>
 </body>
 </html>
 
   
-  
+    </body>
+</html>
