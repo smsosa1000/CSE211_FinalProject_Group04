@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage your account and preferences from your personal EventsX dashboard.">
+    <meta name="author" content="Group04_223101629_223101614_223104728_223104766">
+    <title>Dashboard - EventsX</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/main_style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- ========== HEADER SECTION ========== -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo-area">
+                    <a href="../index.html" class="logo-link">
+                        <img src="images/logo.png" alt="EventsX Logo" class="site-logo" width="90" height="90">
+                        <div class="site-branding">
+                            <h1>EventsX</h1>
+                            <p class="tagline">Dynamic Responsive Event Planner</p>
+                        </div>
+                    </a>
+                </div>
+
+                <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
+
+                <nav class="primary-nav" id="main-navigation" aria-label="Primary Navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item"><a href="dashboard.html" class="nav-link active" aria-current="page"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li class="nav-item"><a href="events.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Events Catalog</a></li>
+                        <li class="nav-item"><a href="registration.html" class="nav-link"><i class="fas fa-user-circle"></i> Login</a></li>
+                        <li class="nav-item"><a href="budget-calculator.html" class="nav-link"><i class="fas fa-calculator"></i> Budget Calculator</a></li>
+                        <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                        <li class="nav-item"><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li class="nav-item"><a href="https://www.gu.edu.eg" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="fas fa-external-link-alt"></i> Galala University</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <a href="registration.html" class="login-icon-link" aria-label="Login or Register">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Login</span>
+                    </a>
+                    <label for="nav-toggle" class="btn nav-toggle" id="mobile-nav-toggle" tabindex="0">
+                        <i class="fas fa-bars"></i>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== BREADCRUMB NAVIGATION ========== -->
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="../index.html" class="breadcrumb-link">Home</a></li>
+                <li class="breadcrumb-item"><span class="breadcrumb-current">Dashboard</span></li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="main-content" class="main-container">
+        <div class="container">
+            <header class="page-header">
+                <h1>Dashboard</h1>
+                <p class="lead">Manage your account and preferences effortlessly.</p>
+            </header>
+
+            <div class="two-column-layout">
+                <!-- Sidebar / Profile -->
+                <aside class="content-secondary">
+                    <section class="sidebar-section text-center">
+                        <img src="images/profile.png" alt="User Avatar" class="rounded-circle border-primary mb-3" width="120" height="120" id="user-avatar">
+                        <h2 class="sidebar-title" id="user-name">Loading Profile...</h2>
+
+                        <ul class="list-unstyled text-left" id="user-details">
+                            <!-- Filled by main.js (session user) -->
+                        </ul>
+
+                        <button class="btn btn-sm btn-outline btn-block mt-3" type="button" disabled title="Coming soon">
+                            Edit Profile (Coming Soon)
+                        </button>
+                        <button class="btn btn-sm btn-outline btn-block mt-2" id="logout-btn" type="button">
+                            Logout
+                        </button>
+                    </section>
+
+                    <section class="sidebar-section">
+                        <h3 class="sidebar-title">Quick Stats</h3>
+                        <div class="p-2" id="user-stats">
+                            <article class="card">
+                                <h4 class="sr-only">Quick Stats</h4>
+                                <div class="card-body">
+                                    <p class="card-text mb-0">More stats will appear here soon.</p>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                </aside>
+
+                <!-- Primary Content -->
+                <div class="content-primary">
+                    <section>
+                        <h2>Account Overview</h2>
+                        <article class="card">
+                            <h3 class="sr-only">Account Overview</h3>
+                            <div class="card-body">
+                                <p class="card-text mb-0">
+                                    This dashboard is connected to your account session. After you log in, your profile data will appear on the left.
+                                </p>
+                            </div>
+                        </article>
+                    </section>
+
+                    <!-- ✅ NEW: My Registrations -->
+                    <section class="mt-5">
+                        <h2>My Registrations</h2>
+                        <article class="card">
+                            <h3 class="sr-only">My Registrations</h3>
+                            <div class="card-body">
+                                <ul id="my-registrations" class="list-unstyled m-0">
+                                    <li>Loading...</li>
+                                </ul>
+                            </div>
+                        </article>
+                    </section>
+
+                    <section class="mt-5">
+                        <h2>Account Actions</h2>
+                        <article class="card">
+                            <h3 class="sr-only">Account Actions</h3>
+                            <div class="card-body">
+                                <ul class="list-unstyled m-0">
+                                    <li class="mb-2"><i class="fas fa-user-circle"></i> View your profile details</li>
+                                    <li class="mb-2"><i class="fas fa-sign-out-alt"></i> Logout securely</li>
+                                    <li class="mb-0"><i class="fas fa-cog"></i> More features can be added later (profile edit, settings, etc.)</li>
+                                </ul>
+                            </div>
+                        </article>
+                    </section>
+
+                    <section class="mt-5">
+                        <h2>System Messages</h2>
+                        <article class="card" id="dashboard-notifications">
+                            <h3 class="sr-only">System Messages</h3>
+                            <div class="card-body">
+                                <p class="card-text mb-0">No new messages.</p>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER SECTION ========== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <section class="footer-section">
+                    <h3>EventsX</h3>
+                    <p>Your ultimate event planning platform. Discover, register, and manage events with ease.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/EventsXOfficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/eventsx" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/eventsxofficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </section>
+
+                <section class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events Catalog</a></li>
+                        <li><a href="registration.html"><i class="fas fa-chevron-right"></i> Login</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </section>
+
+                <section class="footer-section">
+                    <h4>Contact Info</h4>
+                    <address class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:info@eventsx-gu.edu">info@eventsx-gu.edu</a></p>
+                        <p><i class="fas fa-phone"></i> +20 15888</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Galala University, Suez, Egypt</p>
+                    </address>
+                </section>
+
+                <section class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Help Center</a></li>
+                    </ul>
+                </section>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span class="current-year">2025</span> EventsX. All rights reserved.</p>
+                <p>Last Updated: <time datetime="2026-01-05">January 5, 2026</time></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const storedData = localStorage.getItem('eventsx_user');
+
+            if (storedData) {
+                try {
+                    const user = JSON.parse(storedData);
+                    console.log("✅ Found user in localStorage:", user);
+
+
+                    const nameElement = document.getElementById('user-name');
+                    if (nameElement) {
+
+                        nameElement.textContent = user.name || user.fullName || user.username || "Welcome!";
+                        nameElement.style.color = "#2c3e50";
+                    }
+
+
+                    const detailsElement = document.getElementById('user-details');
+                    if (detailsElement) {
+                        detailsElement.innerHTML = `
+                            <li class="mb-1"><strong>Username:</strong> ${user.username}</li>
+                            <li class="mb-1"><strong>Email:</strong> ${user.email}</li>
+                            <li class="mb-1"><strong>Role:</strong> ${user.role || 'User'}</li>
+                        `;
+                    }
+
+
+                    const logoutBtn = document.getElementById('logout-btn');
+                    if (logoutBtn) {
+                        logoutBtn.onclick = function() {
+                            localStorage.removeItem('eventsx_user');
+                            window.location.href = 'registration.html';
+                        };
+                    }
+
+                } catch (e) {
+                    console.error("Error parsing user data:", e);
+                }
+            } else {
+
+                console.log("❌ No user found, redirecting...");
+
+            }
+        });
+    </script>
+ </body>
+ </html>
+

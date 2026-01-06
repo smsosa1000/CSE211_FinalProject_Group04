@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register or Login to EventsX - Your personal event planning companion.">
+    <meta name="author" content="Mohamed Samir 223104766">
+    <title>Login & Registration - EventsX</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/main_style.css">
+    <link rel="stylesheet" href="css/registration.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-wrapper">
+                <div class="logo-area">
+                    <a href="../index.html" class="logo-link">
+                        <img src="images/logo.png" alt="EventsX Logo" class="site-logo" width="90" height="90">
+                        <div class="site-branding">
+                            <h1>EventsX</h1>
+                            <p class="tagline">Dynamic Responsive Event Planner</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
+
+                <nav class="primary-nav" id="main-navigation" aria-label="Primary Navigation">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li class="nav-item"><a href="events.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Events Catalog</a></li>
+                        <li class="nav-item"><a href="registration.html" class="nav-link active" aria-current="page"><i class="fas fa-user-plus"></i> Registration</a></li>
+                        <li class="nav-item"><a href="budget-calculator.html" class="nav-link"><i class="fas fa-calculator"></i> Budget Calculator</a></li>
+                        <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                        <li class="nav-item"><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li class="nav-item"><a href="https://www.gu.edu.eg" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="fas fa-external-link-alt"></i> Galala University</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <a href="registration.html" class="login-icon-link" aria-label="Login or Register">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Login</span>
+                    </a>
+                    <label for="nav-toggle" class="btn nav-toggle" id="mobile-nav-toggle" tabindex="0">
+                        <i class="fas fa-bars"></i>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="../index.html" class="breadcrumb-link">Home</a></li>
+                <li class="breadcrumb-item"><span class="breadcrumb-current">Registration & Login</span></li>
+            </ol>
+        </div>
+    </nav>
+
+    <main id="main-content" class="main-container auth-page-wrapper">
+        <div class="auth-container">
+            <aside class="auth-sidebar">
+                <h2 id="sidebar-title">New Here?</h2>
+                <p id="sidebar-text">Join EventsX and start using your account.</p>
+                <button class="auth-toggle-btn" id="auth-toggle-btn" type="button">Sign Up</button>
+            </aside>
+
+            <section class="auth-main">
+                <h2 class="sr-only">Authentication</h2>
+                <div class="auth-form-wrapper">
+                    <section class="auth-form active" id="login-form">
+                        <h2>Login</h2>
+                        <form action="#" id="login-form-element" method="post" autocomplete="on">
+                            <div class="form-group">
+                                <label for="login-username" class="form-label">Username or Email</label>
+                                <input type="text" id="login-username" name="login" class="form-control" required placeholder="Enter your credentials" autocomplete="username">
+                            </div>
+                            <div class="form-group">
+                                <label for="login-password" class="form-label">Password</label>
+                                <input type="password" id="login-password" name="password" class="form-control" required placeholder="Enter your password" autocomplete="current-password">
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <section class="auth-form" id="signup-form">
+                        <h2>Join EventsX</h2>
+                        <form action="#" id="signup-form-element" method="post" autocomplete="on">
+                            <div class="form-step active" id="step-0">
+                                <h3>Step 1: Account</h3>
+                                <div class="form-group">
+                                    <label for="reg-username" class="form-label">Username <span class="required">*</span></label>
+                                    <input type="text" id="reg-username" name="username" class="form-control" required placeholder="Choose a username" autocomplete="username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-password" class="form-label">Password <span class="required">*</span></label>
+                                    <input type="password" id="reg-password" name="password" class="form-control" required placeholder="Minimum 8 characters" autocomplete="new-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-confirm-password" class="form-label">Confirm Password <span class="required">*</span></label>
+                                    <input type="password" id="reg-confirm-password" name="confirm_password" class="form-control" required placeholder="Repeat password" autocomplete="new-password">
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-primary btn-next">Next: Personal Info <i class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="form-step" id="step-1">
+                                <h3>Step 2: Personal Info</h3>
+                                <div class="form-group">
+                                    <label for="reg-fullname" class="form-label">Full Name <span class="required">*</span></label>
+                                    <input type="text" id="reg-fullname" name="fullname" class="form-control" required placeholder="Enter your full name" autocomplete="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-email" class="form-label">Email Address <span class="required">*</span></label>
+                                    <input type="email" id="reg-email" name="email" class="form-control" required placeholder="your@email.com" autocomplete="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-phone" class="form-label">Phone Number</label>
+                                    <input type="tel" id="reg-phone" name="phone" class="form-control" placeholder="+20 ..." autocomplete="tel">
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-outline btn-prev"><i class="fas fa-chevron-left"></i> Back</button>
+                                    <button type="submit" class="btn btn-success">Create Account <i class="fas fa-check"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <section class="footer-section">
+                    <h3>EventsX</h3>
+                    <p>Your ultimate event planning platform. Discover, register, and manage events with ease.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/EventsXOfficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/eventsx" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/eventsxofficial" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/EventsX" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </section>
+                
+                <section class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="events.html"><i class="fas fa-chevron-right"></i> Events Catalog</a></li>
+                        <li><a href="registration.html"><i class="fas fa-chevron-right"></i> Registration</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </section>
+                
+                <section class="footer-section">
+                    <h4>Contact Info</h4>
+                    <address class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:info@eventsx-gu.edu">info@eventsx-gu.edu</a></p>
+                        <p><i class="fas fa-phone"></i> +20 15888</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Galala University, Suez, Egypt</p>
+                    </address>
+                </section>
+                
+                <section class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Help Center</a></li>
+                    </ul>
+                </section>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span class="current-year">2025</span> EventsX. All rights reserved.</p>
+                <p>Last Updated: <time datetime="2026-01-05">January 5, 2026</time></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script>
+(function() {
+    const initAuth = () => {
+        const container = document.querySelector('.auth-container');
+        const toggleBtn = document.getElementById('auth-toggle-btn');
+        const loginForm = document.getElementById('login-form-element');
+        const signupForm = document.getElementById('signup-form-element');
+
+        if (toggleBtn && container) {
+            toggleBtn.onclick = (e) => {
+                e.preventDefault();
+                container.classList.toggle('signup-mode');
+                const isSignup = container.classList.contains('signup-mode');
+                document.getElementById('sidebar-title').innerText = isSignup ? "Welcome Back!" : "New Here?";
+                document.getElementById('sidebar-text').innerText = isSignup ? "Already have an account?" : "Join EventsX now!";
+                toggleBtn.innerText = isSignup ? "Sign In" : "Sign Up";
+                document.getElementById('login-form').classList.toggle('active', !isSignup);
+                document.getElementById('signup-form').classList.toggle('active', isSignup);
+            };
+        }
+
+        const nextBtn = document.querySelector('.btn-next');
+        const prevBtn = document.querySelector('.btn-prev');
+        if (nextBtn) nextBtn.onclick = () => {
+            document.getElementById('step-0').classList.remove('active');
+            document.getElementById('step-1').classList.add('active');
+        };
+        if (prevBtn) prevBtn.onclick = () => {
+            document.getElementById('step-1').classList.remove('active');
+            document.getElementById('step-0').classList.add('active');
+        };
+
+        if (signupForm) {
+            signupForm.onsubmit = async function(e) {
+                e.preventDefault();
+                const btn = signupForm.querySelector('button[type="submit"]');
+                const originalText = btn.innerText;
+                
+                const userData = {
+                    username: document.getElementById('reg-username').value.trim(),
+                    fullname: document.getElementById('reg-fullname').value.trim(),
+                    email: document.getElementById('reg-email').value.trim(),
+                    phone: document.getElementById('reg-phone').value.trim(),
+                    password: document.getElementById('reg-password').value
+                };
+
+                btn.innerText = "Creating Account...";
+                btn.disabled = true;
+
+                try {
+                    const res = await fetch('../api/auth/register.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(userData)
+                    });
+                    const data = await res.json();
+
+                    if (data.ok) {
+                        alert("Account created successfully!");
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        alert(data.error || "Signup failed");
+                        btn.innerText = originalText;
+                        btn.disabled = false;
+                    }
+                } catch (err) {
+                    alert("Server Connection Error");
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                }
+            };
+        }
+
+        if (loginForm) {
+            loginForm.onsubmit = async function(e) {
+                e.preventDefault();
+                const btn = loginForm.querySelector('button');
+                btn.innerText = "Processing...";
+                const login = document.getElementById('login-username').value;
+                const password = document.getElementById('login-password').value;
+
+                try {
+                    const res = await fetch('../api/auth/login.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        credentials: 'include',
+                        body: JSON.stringify({ login, password })
+                    });
+                    const data = await res.json();
+                    if (data.ok) { window.location.href = 'dashboard.html'; }
+                    else { alert(data.error); btn.innerText = "Sign In"; }
+                } catch (err) { alert("Server Error"); }
+            };
+        }
+    };
+
+    if (document.readyState === "complete") { initAuth(); }
+    else { window.addEventListener("load", initAuth); }
+})();
+    </script>
+</body>
+</html>
+
+  
+  
